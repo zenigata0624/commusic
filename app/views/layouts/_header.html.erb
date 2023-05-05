@@ -1,0 +1,85 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+   <div class="container">
+    <a class="navbar-brand" href="/"><span>Commusic_LIFE<span></a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+     </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+       <ul class="navbar-nav ml-auto">
+        <% if admin_signed_in? %>
+        <% if request.fullpath.include? "/admin" %>
+         <li class="border rounded mr-2">
+          <%=link_to "HOME" ,admin_root_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to " 投稿一覧" , admin_musics_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "会員一覧" , admin_users_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "ジャンル作成" ,admin_music_genres_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "LOGOUT",destroy_admin_session_path,method: :delete, class:"nav-link text-light"%>
+         </li>
+        <% else %>
+         <li class="border rounded mr-2">
+          <%=link_to "HOME" ,root_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "ABOUT" ,admin_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "ゲストログイン" ,new_user_session_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "sign_in" ,new_user_session_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "LOGIN" ,admin_root_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+           <%=link_to "管理者用" ,new_admin_session_path, class:"nav-link text-light"%>
+         </li>
+        <% end %>
+        <% elsif user_signed_in? %>
+         <li class="border rounded mr-2">
+          <%=link_to "HOME" ,user_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "投稿する" ,new_music_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "ユーザー一覧" , users_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "楽曲一覧" , musics_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "LOGOUT",destroy_user_session_path,method: :delete, class:"nav-link text-light"%>
+         </li>
+        <% else %>
+         <li class="border rounded mr-2">
+          <%=link_to "HOME" ,root_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "ABOUT" ,about_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "ゲストログイン" ,new_user_session_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "sign_in" ,new_user_registration_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+          <%=link_to "LOGIN" ,new_user_session_path, class:"nav-link text-light"%>
+         </li>
+         <li class="border rounded mr-2">
+           <%=link_to "管理者用" ,new_admin_session_path, class:"nav-link text-light"%>
+         </li>
+      <% end %>
+    </ul>
+ </nav>
+</header>
