@@ -24,29 +24,10 @@
          <li class="border rounded mr-2">
           <%=link_to "LOGOUT",destroy_admin_session_path,method: :delete, class:"nav-link text-light"%>
          </li>
-        <% else %>
-         <li class="border rounded mr-2">
-          <%=link_to "HOME" ,root_path, class:"nav-link text-light"%>
-         </li>
-         <li class="border rounded mr-2">
-          <%=link_to "ABOUT" ,admin_path, class:"nav-link text-light"%>
-         </li>
-         <li class="border rounded mr-2">
-          <%=link_to "ゲストログイン" ,new_user_session_path, class:"nav-link text-light"%>
-         </li>
-         <li class="border rounded mr-2">
-          <%=link_to "sign_in" ,new_user_session_path, class:"nav-link text-light"%>
-         </li>
-         <li class="border rounded mr-2">
-          <%=link_to "LOGIN" ,admin_root_path, class:"nav-link text-light"%>
-         </li>
-         <li class="border rounded mr-2">
-           <%=link_to "管理者用" ,new_admin_session_path, class:"nav-link text-light"%>
-         </li>
         <% end %>
         <% elsif user_signed_in? %>
          <li class="border rounded mr-2">
-          <%=link_to "HOME" ,user_path, class:"nav-link text-light"%>
+          <%=link_to "HOME" ,new_user_session_path, class:"nav-link text-light"%>
          </li>
          <li class="border rounded mr-2">
           <%=link_to "投稿する" ,new_music_path, class:"nav-link text-light"%>
@@ -68,7 +49,7 @@
           <%=link_to "ABOUT" ,about_path, class:"nav-link text-light"%>
          </li>
          <li class="border rounded mr-2">
-          <%=link_to "ゲストログイン" ,new_user_session_path, class:"nav-link text-light"%>
+         <%=link_to 'ゲストログイン（閲覧用）',user_guest_sign_in_path, method: :post, class:"nav-link text-light" %>
          </li>
          <li class="border rounded mr-2">
           <%=link_to "sign_in" ,new_user_registration_path, class:"nav-link text-light"%>

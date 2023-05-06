@@ -1,2 +1,28 @@
-<h1>Admin::MusicGenres#index</h1>
-<p>Find me in app/views/admin/music_genres/index.html.erb</p>
+<div class='container'>
+  
+ <h3>ジャンル一覧・追加</h3>
+  <%= form_with model:@music_genre, url:admin_music_genres_path(@music_genre),method: :post, local:true do |f| %>
+    <div>
+      <%= f.label :genre_name, 'ジャンル名' %>
+      <%= f.text_field:genre_name, placeholder: "ジャンル名" %></tr>
+      <%= f.submit '新規登録',class: 'btn btn-success' %></tr>
+    </div>
+  <% end %>
+  
+ <table class='table table-hover table-inverse'>
+  <thead>
+   <th>ジャンル</th>
+   <th></th>
+   <th></th>
+  </thead>
+  <tbody>
+    <% @music_genres.each do |music_genre| %>
+    <tr>
+      <td><%= music_genre.genre_name %></td>
+      <td><%= link_to '編集する', edit_admin_music_genre_path(music_genre), class: 'btn btn-success' %></td>
+      <td><%= link_to '削除する', admin_music_genre_path(music_genre),method: :delete ,class: "btn btn-danger" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+ </table>
+</div>

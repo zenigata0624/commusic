@@ -2,19 +2,23 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: [:passwords],  controllers: {
    registrations: "user/registrations",
-   sessions: 'user/sessions'
+   sessions: 'user/sessions' 
   }
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
+   
+  devise_scope :user do
+    post 'user/guest_sign_in', to: 'user/sessions#guest_sign_in'
+  end
 
   scope module: :user do
     root to: "homes#top"
     get 'about' =>"homes#about"
     get "search" => "searches#search"
     get 'followings/followers'
-
+    
     resources :users, only: [:show,:edit,:update,:index,] do
       member do
         get :followings, :followers
@@ -42,6 +46,6 @@ Rails.application.routes.draw do
 
     resources :music_genres, only:[:index,:create,:edit,:update,:destroy]
     resources :users, only:[:index,:show,:edit,:update]
- end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

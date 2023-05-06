@@ -1,2 +1,13 @@
-<h1>Admin::MusicGenres#edit</h1>
-<p>Find me in app/views/admin/music_genres/edit.html.erb</p>
+
+<div class='container'>
+  <h3>ジャンル編集</h3>
+   <%= form_with model:@music_genre, url:admin_music_genre_path(@music_genre),method: :patch, local:true do |f| %>
+    <tr>
+      <th><label for="music_genre_name">ジャンル名</label></th>
+      
+      <th><%= f.text_field:genre_name %></th>
+      
+      <th><%= f.submit '変更を保存',class: 'btn btn-success' %></th>
+    </tr>
+   <% end %>
+</div>
