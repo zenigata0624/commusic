@@ -2,25 +2,34 @@ class User::MusicsController < ApplicationController
 
   before_action :correct_user,only: [:edit,:update,]
   before_action :set_music_genre, only: [:new, :create]
-  
+
   def new
      @music = Music.new
   end
 
-   def create
-    @music=Music.new(music_params)
-    @music.user_id = current_user.id
-   if @music.save
-     redirect_to music_path(@music.id),success: "投稿が完了しました"
+  def create
+   if current_user.nil? || current_user.guest?
+     redirect_to  musics_path, alert: "ゲストユーザーは投稿できません。"
    else
-    @user= current_user
-    @musics = Music.page(params[:page])
+     @music=Music.new(music_params)
+     @music.user_id = current_user.id
+     @music_genres = MusicGenre.all
+    if @music.save
+     redirect_to music_path(@music.id),success: "投稿が完了しました"
+    else
+     @user= current_user
+     @musics = Music.page(params[:page])
      render :index
+    end
    end
   end
-
+  
   def index
-    @musics= Music.all
+   if current_user.nil? || current_user.guest?
+    @musics=Kaminari.paginate_array(Music.all).page(params[:page]).per(10)
+   else
+    @musics=Kaminari.paginate_array(current_user.musics).page(params[:page]).per(10)
+   end
     @user = current_user
   end
 
@@ -32,6 +41,7 @@ class User::MusicsController < ApplicationController
   def edit
     @music = Music.find(params[:id])
     @user= current_user
+    @music_genres = MusicGenre.all
   end
 
   def update
@@ -48,12 +58,12 @@ class User::MusicsController < ApplicationController
   def destroy
     music = Music.find(params[:id])
     music.destroy
-    redirect_to music_path
+    redirect_to musics_path
   end
 
   private
-  
-  
+
+
   def set_music_genre
     @music_genres = MusicGenre.all
   end
@@ -67,5 +77,5 @@ class User::MusicsController < ApplicationController
     @user=@music.user
     redirect_to(books_path) unless @user==current_user
  end
- 
+
 end

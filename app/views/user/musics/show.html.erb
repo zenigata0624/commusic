@@ -1,2 +1,30 @@
-<h1>User::Musics#show</h1>
-<p>Find me in app/views/user/musics/show.html.erb</p>
+ <%= render 'user/shared/flash_messages' %>
+ <div class="container">
+  <div class="row">
+   <div class="col-md-3 col-md-offset-2">
+    <div class="card mb-2 box-shadow" style="margin-top: 20px;">
+      <%= image_tag @music.get_music_image(100,100), class: "card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title">楽曲名: <%= @music.music_name %></h5>
+        <h5 class="card-subtitle mb-2 text-muted">歌手名: <%= @music.singer %></h5>
+      <% if @music.music_genre.present? %>
+        <h5 class="card-subtitle mb-2 text-muted">ジャンル名: <%= @music.music_genre.genre_name %></h5>
+      <% end %>
+      <% if @music.user.present? %>
+        <h5 class="card-subtitle mb-2 text-muted">投稿者名: <%= @music.user.name %></h5>
+      <% end %>
+        <p class="card-text"><%= simple_format(@music.music_notes) %></p>
+      </div>
+    　</div>
+    <div class= "botton" style="margin-top: 20px; margin-left: 20px;">
+      <% if @music.user == current_user %>
+      <%=link_to "Edit", edit_music_path(@music.id) ,class: 'btn btn-success' %>
+      <%= link_to "Destroy", music_path(@music), method: :delete ,class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+   <div class="col-md-9">
+    <h3>コメント欄</h3>
+   </div>
+ </div>
+</div>

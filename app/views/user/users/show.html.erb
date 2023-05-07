@@ -1,2 +1,26 @@
-<h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+<%= render 'user/shared/flash_messages' %>
+ <div class="container">
+  <div class="row">
+   <div class="col-md-3 col-md-offset-2">
+    <div class="card mb-2 box-shadow" style="margin-top: 20px;">
+     <% if @user.present? %>
+       <%= image_tag @user.get_profile_image(100,100), class: "card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title">名前:<%= @user.name %></h5>
+         <% if @user.introduction.present? %>
+       <p class="card-text">自己紹介:<%= simple_format(@user.introduction) %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class= "botton" style="margin-top: 20px; margin-left: 20px;">
+      <% if @user == current_user && !current_user.guest? %>
+      <%=link_to "Edit", edit_user_path(@user.id) ,class: 'btn btn-success' %>
+      <% end %>
+    </div>
+     <% end %>
+  </div>
+   <div class="col-md-9">
+    <h3>投稿一覧</h3>
+   </div>
+ </div>
+</div>
