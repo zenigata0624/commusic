@@ -37,7 +37,11 @@ class User < ApplicationRecord
    def guest?
     email == 'guest@example.com'
    end
-
+   
+   def active_for_authentication?
+    super && (flag == false)
+   end
+   
    def follow(user_id)
     relationships.create(followed_id: user_id)
    end

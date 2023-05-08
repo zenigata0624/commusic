@@ -1,5 +1,6 @@
+
 <div class='container'>
-  
+
  <h3>ジャンル一覧・追加</h3>
   <%= form_with model:@music_genre, url:admin_music_genres_path(@music_genre),method: :post, local:true do |f| %>
     <div>
@@ -8,7 +9,7 @@
       <%= f.submit '新規登録',class: 'btn btn-success' %></tr>
     </div>
   <% end %>
-  
+
  <table class='table table-hover table-inverse'>
   <thead>
    <th>ジャンル</th>

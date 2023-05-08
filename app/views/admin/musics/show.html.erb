@@ -1,2 +1,30 @@
-<h1>Admin::Musics#show</h1>
-<p>Find me in app/views/admin/musics/show.html.erb</p>
+  <div class="row justify-content-center">
+   <div class="col-md-8 text-center" style ="margin-top:20px;">
+     <%= image_tag @music.get_music_image(300, 300), class: "img-fluid rounded mb-3" %>
+     <h2>楽曲名： <%= @music.music_name %></h2>
+     <h2>楽曲を削除する: <%= link_to "Destroy", admin_music_path(@music), method: :delete, class: "btn btn-danger mb-3" %></h2>
+   </div>
+  </div>
+  <div class="row justify-content-center">
+   <div class="col-md-8 text-center">
+     <h3>コメント欄</h3>
+     <table class="table">
+      <tbody>
+       <% @music_comments.each do |music_comment| %>
+        <tr>
+         <td>
+           <div class="media">
+            <%= image_tag music_comment.user.get_profile_image(50, 50), class: "mr-3" %>
+            <div class="media-body">
+            <h5 class="mt-0"><%= link_to music_comment.user.name, user_path(music_comment.user.id) %></h5>
+            <%= music_comment.comment %>
+            <%= link_to "削除", admin_music_music_comment_path(music_comment.music.id, music_comment.id), class: "btn btn-danger", remote: true, method: :delete %>
+            </div>
+           </div>
+         </td>
+       </tr>
+    <% end %>
+   </tbody>
+  </table>
+  </div>
+</div>

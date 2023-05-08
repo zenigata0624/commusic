@@ -36,6 +36,7 @@ class User::MusicsController < ApplicationController
   def show
     @music = Music.find(params[:id])
     @user = User.find_by(id: @music.user_id)
+    @music_comment = MusicComment.new
   end
 
   def edit
@@ -75,7 +76,7 @@ class User::MusicsController < ApplicationController
  def correct_user
     @music=Music.find(params[:id])
     @user=@music.user
-    redirect_to(books_path) unless @user==current_user
+    redirect_to(musis_path) unless @user==current_user
  end
 
 end

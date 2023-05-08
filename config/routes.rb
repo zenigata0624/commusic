@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "search" => "searches#search"
     get 'followings/followers'
     
-    resources :users, only: [:show,:edit,:update,:index,] do
+    resources :users, only: [:show,:edit,:update,:index] do
       member do
         get :followings, :followers
       end
@@ -39,13 +39,11 @@ Rails.application.routes.draw do
   namespace :admin do
      root to: "homes#top"
     resources :musics, only: [:index,:show,:destroy,] do
-      member do
-      delete :remove_comment
-      end
+    resources :music_comments, only: [:destroy]
     end
 
     resources :music_genres, only:[:index,:create,:edit,:update,:destroy]
-    resources :users, only:[:index,:show,:edit,:update]
+    resources :users, only:[:index,:show,:edit,:update,:destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

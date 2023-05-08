@@ -6,11 +6,12 @@ class User::UsersController < ApplicationController
    before_action :set_user, only: [:show, :edit, :update, :followings,:followers]
     
   def index
-    @users = User.all
+    @users=Kaminari.paginate_array(User.all).page(params[:page]).per(10)
     @user = current_user
   end
 
   def show
+     @musics = @user.musics.page(params[:page]).per(10)
   end
   
  
@@ -41,9 +42,10 @@ class User::UsersController < ApplicationController
     params.require(:user).permit(:name,:profile_image,:introduction)
   end
 
-  def correct_user
-   @user=User.find(params[:id])
-   redirect_to user_path(current_user) unless @user == current_user && !current_user.guest?
+ def correct_user
+  @user = User.find(params[:id])
+  unless (@user == current_user || (@user.guest? && current_user&.guest?)) || current_user&.admin?
+    redirect_to current_user ? user_path(current_user) : edit_admin_user_path(@user)
   end
-  
+ end
 end

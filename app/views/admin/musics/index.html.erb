@@ -1,2 +1,22 @@
-<h1>Admin::Musics#index</h1>
-<p>Find me in app/views/admin/musics/index.html.erb</p>
+<table class= "table mt-5">
+  <thead class="thead-light">
+   <tr>
+    <th>音楽名</th>
+    <th>歌手名</th>
+    <th>ジャンル名</th>
+    <th>投稿者</th>
+    <th colspan="3"></th>
+   </tr>
+  </thead>
+  <tbody>
+   <% @musics.each do |music| %>
+    <tr>
+     <td><%= link_to music.music_name,admin_music_path(music.id) %></td>
+     <td><%= music.singer %></td>
+     <td><%= music.music_genre.genre_name %></td>
+     <td><%= music.user.name %></td>
+     <td><%= link_to "Destroy",admin_music_path(music), method: :delete ,class: "btn btn-danger" %></td>
+    </tr>
+   <% end %>
+  </tbody>
+</table>
