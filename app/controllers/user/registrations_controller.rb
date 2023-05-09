@@ -10,7 +10,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     if resource.email == 'guest@example.com'
      redirect_to root_path, alert: 'ゲストユーザーの投稿・更新・削除はできません。'
     end
-  end
+   end
 
 
   # GET /resource/sign_up

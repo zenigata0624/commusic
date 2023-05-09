@@ -1,2 +1,35 @@
-<h1>User::Users#followers</h1>
-<p>Find me in app/views/user/users/followers.html.erb</p>
+<div class= "container mt-5">
+ <div class="row justify-content-center">
+  <div class="col-md-8">
+   <div class="card">
+     <div class="card-header">
+      <h1 class="h3 mb-o">フォロワー　一覧</h1>
+      <table class= "table mt-5">
+      <thead class="thead-light">
+       <tr>
+        <th>image</th>
+        <th>名前</th>
+        <th colspan="3"></th>
+       </tr>
+      </thead>
+       <% if @user.exists? %>
+      <tbody>
+       <%@user.each do|user| %>
+        <tr>
+         <td><%= link_to image_tag(user.get_profile_image(100,100)) ,user_path(user.id) %></td>
+         <td><%= link_to user.name ,user_path(user.id) %></td>
+         <td>フォロー数: <%= user.followings.count %></td>
+         <td>フォロワー数: <%= user.followers.count %></td>
+        </tr>
+       <%end %>
+       <% else %>
+        <p>フォロワー ユーザーはいません</p>
+       <% end %>
+      </tbody>
+    </table>
+    <%= paginate @user %>
+   </div>
+   </div>
+  </div>
+ </div>
+</div>

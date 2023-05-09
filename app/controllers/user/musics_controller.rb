@@ -25,18 +25,13 @@ class User::MusicsController < ApplicationController
   end
   
   def index
-   if current_user.nil? || current_user.guest?
     @musics=Kaminari.paginate_array(Music.all).page(params[:page]).per(10)
-   else
-    @musics=Kaminari.paginate_array(current_user.musics).page(params[:page]).per(10)
-   end
-    @user = current_user
   end
 
   def show
     @music = Music.find(params[:id])
     @user = User.find_by(id: @music.user_id)
-    @music_comment = MusicComment.new
+    @music_comment = MusicComment
   end
 
   def edit

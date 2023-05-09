@@ -1,17 +1,29 @@
 class User::RelationshipsController < ApplicationController
-
-def create
-end
-
-def destroy
-end
-
-def followings
   
-end
+  before_action :authenticate_user!
 
-def followres
-  
-end
+ def create
+  if current_user.guest?
+    redirect_to root_path, alert: 'ゲストユーザーはフォローすることができません。'
+  else
+   current_user.follow(params[:user_id])
+    redirect_to request.referer
+  end
+ end
+
+ def destroy
+  current_user.unfollow(params[:user_id])
+   redirect_to request.referer
+ end
+
+ def followings
+  user = User.find(params[:user_id])
+   @users = user.followings
+ end
+
+ def followres
+  user = User.find(params[:user_id])
+  @users = user.followers
+ end
 
 end

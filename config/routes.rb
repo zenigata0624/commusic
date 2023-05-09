@@ -2,13 +2,13 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: [:passwords],  controllers: {
    registrations: "user/registrations",
-   sessions: 'user/sessions' 
+   sessions: 'user/sessions'
   }
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
-   
+
   devise_scope :user do
     post 'user/guest_sign_in', to: 'user/sessions#guest_sign_in'
   end
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'about' =>"homes#about"
     get "search" => "searches#search"
     get 'followings/followers'
+    
     
     resources :users, only: [:show,:edit,:update,:index] do
       member do
@@ -29,19 +30,19 @@ Rails.application.routes.draw do
     end
 
     resources :musics, only: [:new,:create, :index, :show, :edit ,:update, :destroy ] do
-    resource :favorites, only: [:create,:destroy]
+    resource :favorite, only: [:create,:destroy]
     resources :music_comments,only: [:create,:destroy]
+     get '/favorites', to: 'favorites#index', as: 'favorites'
     end
-
-    resources :chats, only: [:show,:create]
+    resources :chats, only: [:show,:create,:destroy]
   end
 
   namespace :admin do
      root to: "homes#top"
     resources :musics, only: [:index,:show,:destroy,] do
     resources :music_comments, only: [:destroy]
-    end
-
+  end
+  
     resources :music_genres, only:[:index,:create,:edit,:update,:destroy]
     resources :users, only:[:index,:show,:edit,:update,:destroy]
   end
