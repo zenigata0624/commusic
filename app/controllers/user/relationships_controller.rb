@@ -4,7 +4,7 @@ class User::RelationshipsController < ApplicationController
 
  def create
   if current_user.guest?
-    redirect_to root_path, alert: 'ゲストユーザーはフォローすることができません。'
+    redirect_to root_path, flash:{alert: 'ゲストユーザーはフォローすることができません。'}
   else
    current_user.follow(params[:user_id])
     redirect_to request.referer

@@ -20,7 +20,7 @@ class User::UsersController < ApplicationController
 
   def update
     if  @user.update(user_params)
-    redirect_to user_path(@user.id),success: "会員編集を行いました"
+    redirect_to user_path(@user.id),flash: { success: "会員編集を行いました" }
     else
      render:edit
     end

@@ -8,7 +8,6 @@ class User::FavoritesController < ApplicationController
    @music = Music.find(params[:music_id])
     favorite = current_user.favorites.new(music_id: @music.id)
     favorite.save
-    redirect_to music_path(@music), notice: "お気に入りに登録しました"
   end
  end
 
@@ -16,7 +15,6 @@ class User::FavoritesController < ApplicationController
    @music = Music.find(params[:music_id])
     favorite = current_user.favorites.find_by(music_id: @music.id)
     favorite.destroy
-    redirect_to music_path(@music), notice: "お気に入りの登録を外しました"
  end
 
  def index

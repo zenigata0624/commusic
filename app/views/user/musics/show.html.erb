@@ -1,4 +1,5 @@
  <%= render 'user/shared/flash_messages' %>
+
  <div class="container">
   <div class="row">
    <div class="col-md-3 col-md-offset-2">
@@ -10,21 +11,27 @@
       <% if @music.music_genre.present? %>
         <h5 class="card-subtitle mb-2 ">ジャンル名: <%= @music.music_genre.genre_name %></h5>
       <% end %>
+        <h5 class="card-subtitle mb-2 ">閲覧数: <%= @music.view_counts.count %></h5>
       <% if @music.user.present? %>
         <h5 class="card-subtitle mb-2 ">投稿者名: <%= link_to @music.user.name ,user_path(@music.user.id) %></h5>
       <% end %>
         <p class="card-text"><%= simple_format(@music.music_notes) %></p>
+        <div id="favorite_buttons_<%= @music.id %>">
        <h5 class="card-subtitle mb-2 ">いいね<%= render "user/favorites/favorite", music: @music %></h5>
+        </div>
       </div>
      </div>
-    <div class= "botton" style="margin-top: 20px; margin-left: 20px;">
+     <div class= "botton" style="margin-top: 20px; margin-left: 20px;">
       <% if @music.user == current_user %>
       <%=link_to "Edit", edit_music_path(@music.id) ,class: 'btn btn-success' %>
       <%= link_to "Destroy", music_path(@music), method: :delete ,class: "btn btn-danger" %>
       <% end %>
+     </div>
     </div>
-  </div>
-    <%= render "user/music_comments/comment",music: @music , music_comment: @music_comment %>
+    <div class="col-md-9">
+     <div id= "comments-area-index">
+      <%= render "user/music_comments/comment",music: @music , music_comment: @music_comment %>
+     </div>
+    </div>
    </div>
  </div>
-</div>

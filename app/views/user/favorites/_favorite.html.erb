@@ -1,10 +1,10 @@
  <% if music.favorited_by?(current_user) %>
-    <p><%= link_to music_favorite_path(music.id, music.favorites.find_by(user_id: current_user.id)),method: :delete  do %>
+    <p><%= link_to music_favorite_path(music.id, music.favorites.find_by(user_id: current_user.id)),method: :delete ,remote: true do %>
      ♥<%= music.favorites.count %>
        <% end %>
     </p>
      <% else %>
-    <p><%= link_to music_favorite_path(music.id),method: :post do %>
+    <p><%= link_to music_favorite_path(music.id),method: :post ,remote: true  do %>
        ♡<%= music.favorites.count %>
        <% end %>
     </p>

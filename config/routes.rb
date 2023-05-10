@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: "homes#top"
     get 'about' =>"homes#about"
-    get "search" => "searches#search"
     get 'followings/followers'
     
     
@@ -33,6 +32,7 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create,:destroy]
     resources :music_comments,only: [:create,:destroy]
      get '/favorites', to: 'favorites#index', as: 'favorites'
+     get 'search', on: :collection
     end
     resources :chats, only: [:show,:create,:destroy]
   end
