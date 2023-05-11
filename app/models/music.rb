@@ -1,11 +1,12 @@
 class Music < ApplicationRecord
-  
-  
+
+
   belongs_to :user
   belongs_to :music_genre
   has_many :view_counts, dependent: :destroy
   has_many :music_comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
+  scope :recent, -> { order(created_at: :desc) }
   has_one_attached :music_image
 
   validates :music_name, uniqueness: { scope: :singer }

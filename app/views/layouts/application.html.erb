@@ -9,18 +9,17 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-   <body>
+  <body class= "body">
      <%= render "layouts/header"%>
     <%= yield %>
    </body>
-  <footer>
-   <div class='container mt-5'>
-    <div class = 'row'>
-     <div class = 'mx-auto'>
-      <p>commusic_LIFE</p>
-     </div>
-    </div>
-   </div>
-  </footer>
+    <footer class="footer">
+      <div class='container'>
+       <div class='row'>
+        <div class='col'>
+        <p>COMMUSIC_LIFE</p>
+        </div>
+       </div>
+      </div>
+    </footer>
 </html>

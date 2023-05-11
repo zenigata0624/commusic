@@ -16,7 +16,7 @@
            <div class="media">
             <%= image_tag music_comment.user.get_profile_image(50, 50), class: "mr-3" %>
             <div class="media-body">
-            <h5 class="mt-0"><%= link_to music_comment.user.name, user_path(music_comment.user.id) %></h5>
+            <h5 class="mt-0"><%= music_comment.user.name %></h5>
             <%= music_comment.comment %>
             <%= link_to "削除", admin_music_music_comment_path(music_comment.music.id, music_comment.id), class: "btn btn-danger", remote: true, method: :delete %>
             </div>
