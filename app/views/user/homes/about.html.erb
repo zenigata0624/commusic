@@ -1,12 +1,15 @@
 <div class="d-flex flex-column align-items-center">
-  <h1 class="header-top">見出し文字</h1>
-  <h3 class="header-about">見出し文字</h3>
-   <h4 class ="header-music">新着楽曲投稿</h4>
+  <h3 class="header-top">こちらは音楽のコミュニティサイトとなります</h1>
+  <h5 class="header-about text-center">
+     音楽好きの方が気軽にコメントで語り合えたり<br>
+     好きな音楽について投稿をすることができる<br>
+     コミュニティサイトとなります。</h5>
+   <h4 class ="header-music">New_Music</h4>
     <div class="row" style="margin-top: 40px;">
      <% @new_musics.each do|music| %>
-     <div class="col-sm-6 col-md-4 mb-4">
+     <div class="col-sm-4 col-md-4 mb-4">
       <div class="card">
-         <%= link_to image_tag(music.get_music_image(200,200),class: "card-img-top"),user_guest_sign_in_path, method: :post %>
+         <%= link_to image_tag(music.get_music_image(100,100),class: "card-img-top"),user_guest_sign_in_path, method: :post %>
        <div class="card-body">
         <h5 class="card-title">楽曲名：<%=music.music_name %></h5>
         <p class="card-title">歌手：<%=music.singer %></p>

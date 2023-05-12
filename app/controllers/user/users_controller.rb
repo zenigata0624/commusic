@@ -6,12 +6,12 @@ class User::UsersController < ApplicationController
    before_action :set_user, only: [:show, :edit, :update, :followings,:followers]
 
   def index
-    @users=Kaminari.paginate_array(User.all).page(params[:page]).per(10)
+    @users=Kaminari.paginate_array(User.all).page(params[:page]).per(5)
     @user = current_user
   end
 
   def show
-     @musics = @user.musics.page(params[:page]).per(10)
+     @musics = @user.musics.page(params[:page]).per(5)
   end
 
 
@@ -27,11 +27,11 @@ class User::UsersController < ApplicationController
   end
 
   def followings
-    @users = @user.followings.page(params[:page]).per(10)
+    @users = @user.followings.page(params[:page]).per(7)
   end
 
   def followers
-    @user = @user.followers.page(params[:page]).per(10)
+    @user = @user.followers.page(params[:page]).per(7)
   end
 
    private

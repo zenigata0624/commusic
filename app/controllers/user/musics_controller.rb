@@ -32,21 +32,23 @@ class User::MusicsController < ApplicationController
     @music_search = @q.result(distinct: true)
    if params[:music_genre_id].present?
     @music_genre = MusicGenre.find(params[:music_genre_id])
-    @musics = @music_genre.musics.page(params[:page]).per(10)
+    @musics = @music_genre.musics.page(params[:page]).per(6)
    else
-    @musics = Kaminari.paginate_array(@music_search).page(params[:page]).per(10)
+    @musics = Kaminari.paginate_array(@music_search).page(params[:page]).per(6)
    end
   end
   
   def show
-    @music = Music.find(params[:id])
-    @user = User.find_by(id: @music.user_id)
-    @music_comment = MusicComment
-   unless ViewCount.find_by(user_id: current_user.id, music_id: @music.id)
-          current_user.view_counts.create(music_id: @music.id)
-   end
+   @music = Music.find(params[:id])
+   @user = User.find_by(id: @music.user_id)
+   @music_comment = MusicComment.new
+  @music_comments = @music.music_comments.order(created_at: :desc).page(params[:page]).per(4)
+  unless ViewCount.find_by(user_id: current_user.id, music_id: @music.id)
+    current_user.view_counts.create(music_id: @music.id)
   end
-
+  end
+  
+  
   def edit
     @music = Music.find(params[:id])
     @user= current_user
@@ -66,7 +68,7 @@ class User::MusicsController < ApplicationController
   def destroy
     music = Music.find(params[:id])
     music.destroy
-    redirect_to musics_path
+    redirect_to musics_path,flash: {danger: "投稿を削除しました"}
   end
   
   def search
@@ -83,13 +85,13 @@ class User::MusicsController < ApplicationController
   end
 
   def music_params
-    params.require(:music).permit(:music_name,:singer,:music_genre_id,:music_notes,:music_image,:genre_name,)
+    params.require(:music).permit(:music_name,:singer,:music_genre_id,:music_notes,:music_image,:genre_name)
   end
 
  def correct_user
     @music=Music.find(params[:id])
     @user=@music.user
-    redirect_to(musis_path) unless @user==current_user
+    redirect_to(muscs_path) unless @user==current_user
  end
 
 end

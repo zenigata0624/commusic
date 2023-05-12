@@ -3,6 +3,6 @@ class User::HomesController < ApplicationController
   end
 
   def about
-     @new_musics = Music.recent.limit(4)
+     @new_musics = Music.recent.limit(3)
   end
 end
