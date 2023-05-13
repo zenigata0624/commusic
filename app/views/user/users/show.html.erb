@@ -7,7 +7,7 @@
        <% if @user.present? %>
        <%= image_tag @user.get_profile_image(100,100), class: "card-img-top" %>
      <div class="card-body">
-      <h5 class="card-title">名前:<%= @user.name %></h5>
+      <h5 class="card-title">Name:  <%= @user.name %></h5>
        <% if @user.introduction.present? %>
       <p class="card-text">自己紹介:<%= simple_format(@user.introduction) %></p>
        <% end %>
