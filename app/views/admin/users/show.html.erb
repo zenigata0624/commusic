@@ -2,16 +2,14 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-5">
+      <h3 class=" text-center mb-5">User</h3>
       <div class="card">
-        <div class="card-header">
-          <h2 class="h3 mb-0">ユーザー詳細</h2>
-        </div>
         <div class="card-body">
           <%= image_tag @user.get_profile_image(100,100), class: "card-img-top" %>
-          <h5 class="card-title">名前:  <%= @user.name %></h5>
+          <h5 class="card-title mt-4">名前:  <%= @user.name %></h5>
           <h5 class="card-title">ユーザーの状態:　<%= @user.flag ? '退会' : '有効' %></h5>
           <p class="card-text">自己紹介:  <%= simple_format(@user.introduction) %></p>
-          <div class="button" style="margin-top: 20px; margin-left: 20px;">
+          <div class="button" style="margin-top: 20px; text-align:center;">
             <%= link_to "Edit", edit_user_path(@user.id), class: 'btn btn-success' %>
             <%= link_to "Destroy", admin_user_path(@user.id), method: :delete ,class: "btn btn-danger", data: { confirm: "Userデータがすべて消えてしまいます。本当に削除してもよろしいですか？" } %>
           </div>

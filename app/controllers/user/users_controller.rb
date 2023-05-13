@@ -22,6 +22,7 @@ class User::UsersController < ApplicationController
     if  @user.update(user_params)
     redirect_to user_path(@user.id),flash: { success: "会員編集を行いました" }
     else
+     flash.now[:error] = "会員編集に失敗しました"
      render:edit
     end
   end

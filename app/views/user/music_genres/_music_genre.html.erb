@@ -1,12 +1,12 @@
- <div class="card" style="margin-top: 80px;">
-  <div class= "card-header ">
-   <h5 class= "card-title">ジャンル一覧</h5>
-  </div>
-  <div class="card-body">
+<div class="card" style="margin-top: 80px;">
+ <div class= "card-header ">
+  <h5 class= "card-title">Genre</h5>
+   </div>
+   <div class="card-body">
    <div class="goods_genres">
     <% music_genres.each do |music_genre| %>
-   　<p><%= link_to music_genre.genre_name,musics_path(music_genre_id: music_genre.id), class: "card-link text-secondary"%> </p>
+   <p><%= link_to music_genre.genre_name,musics_path(music_genre_id: music_genre.id), class: "card-link text-secondary"%> </p>
     <% end %>
    </div>
   </div>
- </div>
+</div>

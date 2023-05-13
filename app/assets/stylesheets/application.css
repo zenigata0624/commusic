@@ -45,7 +45,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 140vh;
+  height: 150vh;
 }
 
 
@@ -68,13 +68,13 @@ tbody{
   background-color: #f5f5f5;
   padding: 10px;
   margin-bottom: 10px;
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .comment-content {
   border: 1px solid #ddd;
   padding: 10px;
-  max-height: 100px;
+  max-height: 80px;
   overflow: auto; 
 }
 
@@ -100,4 +100,15 @@ tbody{
   margin-top: 5px;
   font-size: 12px;
   color: #888;
+}
+
+
+.paginate {
+  margin-top: 20px;
+}
+
+
+.left-align {
+  float: left;
+  padding-left: 25px;
 }

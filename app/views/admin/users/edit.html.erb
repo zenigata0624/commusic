@@ -1,15 +1,18 @@
 
- <h3 class="mt-3">Edit User</h3>
- <%= form_with model: @user ,url: admin_user_path(@user.id), method: :patch  do |f| %>
+ <div class= "container mt-5">
+ <div class="row justify-content-center">
+  <div class="col-md-8">
+   <h3 class=" text-center mt-3">Edit User</h3>
+   <%= form_with model: @user ,url: admin_user_path(@user.id), method: :patch  do |f| %>
 
   <div class="form-group">
-    <%= f.label :name, "名前", class: "h5" %>
+    <%= f.label :name, "Name", class: "h5" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :introduction, "自己紹介文", class: "h5" %>
-    <%= f.text_field :introduction, class: "form-control" %>
+    <%= f.label :introduction, "Introduction", class: "h5" %>
+    <%= f.text_area :introduction, class: "form-control", rows: '6', wrap: :virtual %>
   </div>
   
   <div class="form-group">
@@ -20,9 +23,12 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :profile_image, "画像ファイル", class: "h5" %>
-    <%= f.file_field :profile_image, class: "form-control" %>
+    <%= f.label :profile_image, "Profile Image", class: "h5" %><br>
+    <%= f.file_field :profile_image %>
   </div>
 
-  <p><%= f.submit '変更', class: "btn btn-primary" %></p>
-<% end %>
+    <p><%= f.submit '変更', class: "btn btn-primary" %></p>
+   <% end %>
+  </div>
+ </div>
+</div>
