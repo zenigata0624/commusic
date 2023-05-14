@@ -15,7 +15,7 @@ class Admin::MusicsController < ApplicationController
   def destroy
     music = Music.find(params[:id])
     music.destroy
-    redirect_to admin_musics_path
+    redirect_to admin_musics_path,flash: {notice: "楽曲が削除されました"}
   end
 
 

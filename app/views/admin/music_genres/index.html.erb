@@ -1,7 +1,8 @@
 <div class="container mt-5">
  <div class="row justify-content-center">
-  <div class="col-md-8">
-   <h3 class="text-center mb-5">Genre一覧・追加</h3>
+  <div class="col-md-8 text-center ">
+  <%= render 'admin/shared/flash_messages' %>
+   <h3 class="mb-5">Genre一覧・追加</h3>
     <%= form_with model: @music_genre, url: admin_music_genres_path, method: :post, local: true do |f| %>
     <div class= "mb-5">
      <%= f.text_field :genre_name, placeholder: "ジャンル名" %>

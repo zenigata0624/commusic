@@ -1,5 +1,4 @@
 <%= render 'user/shared/flash_messages' %>
-
  <div class="container">
   <div class="row">
    <div class="col-md-3 col-md-offset-2">
@@ -36,10 +35,11 @@
       <%= paginate @musics %>
       </div>
      </div>
-    <div class="col-md-8">
-     <h1 class="h3 text-center mt-5">Post_Musics</h1>
+    <div class="col-md-8 text-center">
+    
+     <h1 class="h3 mt-3">Post_Musics</h1>
       <% if @musics.empty? %>
-      <h1 class="h3 text-center mt-5">投稿楽曲はありません</h1>
+      <h1 class="h3 mt-5">投稿楽曲はありません</h1>
         <% else %>
         <table class= "table mt-3">
          <thead class="thead-light">

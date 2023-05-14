@@ -9,35 +9,35 @@ class User::MusicsController < ApplicationController
 
   def create
    if current_user.nil? || current_user.guest?
-     redirect_to  musics_path, flash: { alert: "ゲストユーザーは投稿できません。" }
+     redirect_to  musics_path, flash: { notice: "ゲストユーザーは投稿できません。" }
    else
      @music=Music.new(music_params)
      @music.user_id = current_user.id
      @music_genres = MusicGenre.all
     if @music.save
-     redirect_to music_path(@music.id), flash: {success: "投稿が完了しました"}
+     redirect_to music_path(@music.id), flash: {notice: "投稿が完了しました"}
     else
-     flash.now[:error] = " 同じ楽曲が既に投稿されております。"
+     flash.now[:notice] = " 同じ楽曲が既に投稿されているか、楽曲名と歌手が書かれてないので投稿が失敗しました。"
      @user= current_user
      @musics = Music.page(params[:page])
      @q = Music.ransack(params[:q])
-     render :index
+     render :new
     end
    end
   end
-  
+
   def index
     @music_genres = MusicGenre.all
     @q = Music.ransack(params[:q])
     @music_search = @q.result(distinct: true)
    if params[:music_genre_id].present?
     @music_genre = MusicGenre.find(params[:music_genre_id])
-    @musics = @music_genre.musics.page(params[:page]).per(6)
+    @musics = Kaminari.paginate_array(@music_genre.musics).page(params[:page]).per(6)
    else
     @musics = Kaminari.paginate_array(@music_search).page(params[:page]).per(6)
    end
   end
-  
+
   def show
    @music = Music.find(params[:id])
    @user = User.find_by(id: @music.user_id)
@@ -47,8 +47,8 @@ class User::MusicsController < ApplicationController
     current_user.view_counts.create(music_id: @music.id)
   end
   end
-  
-  
+
+
   def edit
     @music = Music.find(params[:id])
     @user= current_user
@@ -59,23 +59,31 @@ class User::MusicsController < ApplicationController
     @music = Music.find(params[:id])
     if @music.update(music_params)
        @music.user_id = current_user.id
-      redirect_to music_path(@music.id),  flash: {success: "投稿の変更がされました"}
+      redirect_to music_path(@music.id),flash: {notice: "投稿の変更がされました"}
     else
+       @user = current_user
+       @music_genres = MusicGenre.all
+       flash.now[:notice] = "投稿の変更に失敗しました 、同じ名前の楽曲があるか、曲名、歌手名の記述がありません"
       render :edit
     end
   end
-  
+
   def destroy
     music = Music.find(params[:id])
     music.destroy
-    redirect_to musics_path,flash: {danger: "投稿を削除しました"}
+    redirect_to musics_path,flash: {notice: "投稿を削除しました"}
   end
-  
+
   def search
-   @q = Music.ransack(params[:q])
-   @musics = @q.result(distinct: true)
-   render :search_results
+  if params[:q].nil? || params[:q][:music_name_cont].blank?
+    redirect_to musics_path,flash: {notice: "検索に記入がありませんでした"}
+  else
+    @q = Music.ransack(params[:q])
+    @musics = @q.result(distinct: true).page(params[:page]).per(6)
+    flash.now[:notice] = "検索結果が表示されました"
+    render :search_results
   end
+ end
 
   private
 

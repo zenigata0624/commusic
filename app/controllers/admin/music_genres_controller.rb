@@ -12,10 +12,9 @@ class Admin::MusicGenresController < ApplicationController
   def create
      @music_genre = MusicGenre.new(music_genre_params)
    if @music_genre.save
-     redirect_to admin_music_genres_path
+     redirect_to admin_music_genres_path, flash: {notice: "ジャンルが投稿されました"}
    else
-     flash[:alert] = "ジャンル名を入力してください"
-     redirect_back(fallback_location: admin_music_genres_path)
+     redirect_back(fallback_location: admin_music_genres_path, flash: {notice: "記述はないため失敗しました"})
    end
   end
  
@@ -26,16 +25,17 @@ class Admin::MusicGenresController < ApplicationController
   def update
        @music_genre = MusicGenre.find(params[:id])
     if @music_genre.update(music_genre_params)
-       redirect_to admin_music_genres_path
+       redirect_to admin_music_genres_path,flash: {notice: "ジャンルの変更がされました"}
     else
-      render edit
+      flash.now[:notice] = "ジャンルの変更に失敗しました"
+      render :edit
     end
   end
   
   def destroy
     @music_genre = MusicGenre.find(params[:id])
     @music_genre.destroy
-     redirect_to admin_music_genres_path
+     redirect_to admin_music_genres_path,flash: {notice: "ジャンルが削除されました"}
   end
   
   private

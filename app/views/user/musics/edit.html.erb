@@ -1,19 +1,18 @@
- 
- <%= render 'user/shared/flash_messages' %>
 <div class= "container mt-5">
  <div class="row justify-content-center">
+   <%= render 'user/shared/flash_messages' %>
   <div class="col-md-8">
     <h3 class=" text-center mt-3">Edit Music</h3>
   <%= form_with model: @music ,url: music_path(@music.id), method: :patch  do |f| %>
  
   <div class="form-group">
     <%= f.label :music_name, "music_name", class: "h5" %>
-    <%= f.text_field :music_name, class: "form-control" %>
+    <%= f.text_field :music_name, class: "form-control", wrap: :virtual %>
   </div>
 
   <div class="form-group">
     <%= f.label :singer, "singer", class: "h5" %>
-    <%= f.text_field :singer, class: "form-control" %>
+    <%= f.text_field :singer, class: "form-control", wrap: :virtual %>
   </div>
  
   <div class="form-group">
@@ -25,12 +24,12 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :music_notes, "Introduction", class: "h5" %>
+    <%= f.label :music_notes, "Introduction", class: "h5"%>
     <%= f.text_area :music_notes, class: "form-control", rows: '6', wrap: :virtual %>
   </div>
   
   <div class="form-group">
-    <%= f.label :music_image,  "Profile Image",class: "h5"  %><br>
+    <%= f.label :music_image,  "Profile Image",class: "h5" %><br>
     <%= f.file_field :music_image %>
   </div>
 

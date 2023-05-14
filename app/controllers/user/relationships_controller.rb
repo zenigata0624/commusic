@@ -7,13 +7,13 @@ class User::RelationshipsController < ApplicationController
     redirect_to root_path, flash:{alert: 'ゲストユーザーはフォローすることができません。'}
   else
    current_user.follow(params[:user_id])
-    redirect_to request.referer
+    redirect_to request.referer, flash:{alert: 'フォローをしました。'}
   end
  end
 
  def destroy
   current_user.unfollow(params[:user_id])
-   redirect_to request.referer
+   redirect_to request.referer, flash:{alert: 'フォローを外しました。'}
  end
 
  def followings

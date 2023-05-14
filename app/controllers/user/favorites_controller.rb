@@ -7,7 +7,7 @@ class User::FavoritesController < ApplicationController
   else
    @music = Music.find(params[:music_id])
     favorite = current_user.favorites.new(music_id: @music.id)
-    favorite.save
+    favorite.save 
   end
  end
 
