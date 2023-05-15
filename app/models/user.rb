@@ -8,7 +8,7 @@ class User < ApplicationRecord
          has_many :musics, dependent: :destroy
          has_many :music_comments, dependent: :destroy
          has_many :view_counts, dependent: :destroy
-         
+
          has_many :favorites, dependent: :destroy
          has_many :relationships,class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
          has_many :reverse_relationships,class_name: "Relationship",foreign_key: "followed_id", dependent: :destroy
@@ -28,21 +28,20 @@ class User < ApplicationRecord
 
 
    def self.guest
-     find_or_create_by!(email: 'guest@example.com') do |user|
+     find_or_create_by!(name: 'guest',email: 'guest@example.com') do |user|
+     user.password = SecureRandom.urlsafe_base64(10)
      user.name = "guest"
-     user.password = SecureRandom.urlsafe_base64
-     user.flag = true
     end
    end
 
    def guest?
     email == 'guest@example.com'
    end
-   
+
    def active_for_authentication?
     super && (flag == false)
    end
-   
+
    def follow(user_id)
     relationships.create(followed_id: user_id)
    end

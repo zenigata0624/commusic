@@ -20,9 +20,9 @@ class User::SessionsController < Devise::SessionsController
    def guest_sign_in
      user = User.guest
      sign_in user
-     redirect_to root_path,flash: {notice: 'ゲストユーザーとしてログインしました。'}
+     redirect_to  musics_path,flash: {notice: 'ゲストユーザーとしてログインしました。'}
    end
-   
+
   # DELETE /resource/sign_out
   # def destroy
   #   super
