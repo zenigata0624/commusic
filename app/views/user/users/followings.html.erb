@@ -20,12 +20,12 @@
        <td>フォロワー数: <%= user.followers.count %></td>
       </tr>
       <%end %>
+     </tbody>
+    </table>
       <% else %>
       <h3 class=" text-center mt-3">フォロー ユーザーはいません</h3>
       <% end %>
-     </tbody>
-    </table>
-    <%= paginate @users %>
+      <%= paginate @users %>
   </div>
  </div>
 </div>

@@ -33,6 +33,7 @@ class User::MusicsController < ApplicationController
    if params[:music_genre_id].present?
     @music_genre = MusicGenre.find(params[:music_genre_id])
     @musics = Kaminari.paginate_array(@music_genre.musics).page(params[:page]).per(6)
+    flash.now[:notice] = "ジャンルが表示されました"
    else
     @musics = Kaminari.paginate_array(@music_search).page(params[:page]).per(6)
    end
@@ -75,15 +76,15 @@ class User::MusicsController < ApplicationController
   end
 
   def search
-  if params[:q].nil? || params[:q][:music_name_cont].blank?
+   if params[:q].nil? || params[:q][:music_name_cont].blank?
     redirect_to musics_path,flash: {notice: "検索に記入がありませんでした"}
-  else
+   else
     @q = Music.ransack(params[:q])
     @musics = @q.result(distinct: true).page(params[:page]).per(6)
     flash.now[:notice] = "検索結果が表示されました"
     render :search_results
+   end
   end
- end
 
   private
 
