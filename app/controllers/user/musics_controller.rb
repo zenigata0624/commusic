@@ -43,7 +43,7 @@ class User::MusicsController < ApplicationController
    @music = Music.find(params[:id])
    @user = User.find_by(id: @music.user_id)
    @music_comment = MusicComment.new
-  @music_comments = @music.music_comments.order(created_at: :desc).page(params[:page]).per(3)
+   @music_comments = @music.music_comments.order(created_at: :desc).page(params[:page]).per(3)
   unless ViewCount.find_by(user_id: current_user.id, music_id: @music.id)
     current_user.view_counts.create(music_id: @music.id)
   end

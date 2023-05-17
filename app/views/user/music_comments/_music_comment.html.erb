@@ -8,10 +8,8 @@
     <%= music_comment.user.name %>（<%= music_comment.created_at.strftime("%Y-%m-%d %H:%M") %>）
   </div>
   
-   <%- if music_comment.user == current_user %>
-   <div class="d-flex justify-content-end">
+      <%- if music_comment.user == current_user %>
     <%= link_to "Destroy", music_music_comment_path(music_comment.music, music_comment), class: "btn btn-danger", remote: true, method: :delete , data: { confirm: "コメントが消えてしまいます、本当に削除してもよろしいですか？" }%>
    <% end %>
-   </div>
    
 </div>
