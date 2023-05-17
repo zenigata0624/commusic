@@ -9,5 +9,30 @@
 
 Admin.create!(
  email: 'test@tests.com',
- password: '123456',
+ password: 'password',
  )
+
+User.create!(
+ email: 'hou001@cmail.com',
+ password: 'password',
+ name: '一郎',
+ introduction: "Hello, I'm User 1",
+ flag: false
+ )
+
+ User.create!(
+ email: 'hou002@cmail.com',
+ password: 'password',
+ name: '二郎',
+ introduction: "Hello, I'm User 2",
+ flag: false
+ )
+
+User.create!(
+ email: 'hou003@cmail.com',
+ password: 'password',
+ name: '三郎',
+ introduction: "Hello, I'm User 3",
+ flag: false
+ )
+
