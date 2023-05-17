@@ -46,41 +46,9 @@
       <% if @musics.empty? %>
         <h1 class="h3 mt-5">投稿楽曲はありません</h1>
       <% else %>
-       <table class= "table mt-3">
-        <thead class="thead-light">
-         <tr>
-          <th>楽曲</th>
-          <th>歌手名</th>
-          <th>ジャンル名</th>
-          <th>投稿者</th>
-          <th>いいね</th>
-          <th>コメント</th>
-          <th colspan="3"></th>
-         </tr>
-        </thead>
-        <tbody>
-         <% @musics.each do |music| %>
-         <tr>
-          <td><%= link_to music.music_name, music_path(music.id) %></td>
-          <td><%= music.singer %></td>
-          <td><%= music.music_genre.genre_name %></td>
-          <td><%= music.user.name %></td>
-           <td id="favorite_buttons_<%= music.id %>">
-            <%= render "user/favorites/favorite", music: music %>
-           </td>
-          <td><%= music.music_comments.count %></td>
-           <td>
-            <% if music.user == current_user %>
-             <%=link_to "Edit", edit_music_path(music.id) ,class: 'btn btn-success' %>
-             <%= link_to "Destroy", music_path(music), method: :delete ,class: "btn btn-danger", data: { confirm: "投稿した楽曲が消えてしまいます、よろしいですか？" }%>
-           </td>
-         </tr>
-            <% end %>
-         <% end %>
-        </tbody>
-       </table>
+     <%= render 'user/musics/music_index', musics: @musics %> 
       <% end %>
-    </div>
+   </div>
     
  </div>
 </div>

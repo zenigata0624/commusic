@@ -1,42 +1,13 @@
 <div class= "container mt-5">
  <div class="row justify-content-center">
+  
   <div class="col-md-8 text-center">
   <%= render 'user/shared/flash_messages' %>
-    <table class= "table mt-5">
-     <thead class="thead-light">
       <% if @musics.empty? %>
-     <p>検索した楽曲はありません。</p>
+      <p>検索した楽曲はありません。</p>
       <% else %>
-    <tr>
-     <th>音楽名</th>
-     <th>歌手名</th>
-     <th>ジャンル名</th>
-     <th>投稿者</th>
-     <th>いいね</th>
-     <th></th>
-    </tr>
-   </thead>
-   <tbody>
-    <% @musics.each do |music| %>
-     <tr>
-      <td><%= link_to music.music_name, music_path(music.id) %></td>
-      <td><%= music.singer %></td>
-      <td><%= music.music_genre.genre_name %></td>
-      <td><%= music.user.name %></td>
-      <td id="favorite_buttons_<%= music.id %>">
-       <%= render "user/favorites/favorite", music: music %>
-      </td>
-      <td>
-    <% if music.user == current_user %>
-      <%=link_to "Edit", edit_music_path(music.id) ,class: 'btn btn-success' %>
-      <%= link_to "Destroy", music_path(music), method: :delete ,class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
-      </td>
-     </tr>
+     <%= render 'user/musics/music_index', musics: @musics %> 
     <% end %>
-    <% end %>
-    <% end %>
-    </tbody>
-   </table>
    <%= paginate @musics %>
   </div>
  </div>
