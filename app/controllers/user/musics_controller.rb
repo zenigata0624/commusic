@@ -17,7 +17,7 @@ class User::MusicsController < ApplicationController
     if @music.save
      redirect_to music_path(@music.id), flash: {notice: "投稿が完了しました"}
     else
-     flash.now[:notice] = " 同じ楽曲が既に投稿されているか、楽曲名と歌手が書かれてないので投稿が失敗しました。"
+     flash.now[:notice] = "投稿の変更に失敗しました 、同じ名前の楽曲があるか,紹介文を１文字以上１５０文字以下にしてください"
      @user= current_user
      @musics = Music.page(params[:page])
      @q = Music.ransack(params[:q])
@@ -64,7 +64,7 @@ class User::MusicsController < ApplicationController
     else
        @user = current_user
        @music_genres = MusicGenre.all
-       flash.now[:notice] = "投稿の変更に失敗しました 、同じ名前の楽曲があるか、曲名、歌手名の記述がありません"
+       flash.now[:notice] = "投稿の変更に失敗しました 、同じ名前の楽曲があるか,紹介文を１文字以上１５０文字以下にしてください"
       render :edit
     end
   end
@@ -80,7 +80,7 @@ class User::MusicsController < ApplicationController
     redirect_to musics_path,flash: {notice: "検索に記入がありませんでした"}
    else
     @q = Music.ransack(params[:q])
-    @musics = @q.result(distinct: true).page(params[:page]).per(6)
+    @musics = @q.result(distinct: true).page(params[:page]).per(5)
     flash.now[:notice] = "検索結果が表示されました"
     render :search_results
    end

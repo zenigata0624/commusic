@@ -1,5 +1,6 @@
 <div class= "container mt-5">
  <div class="row justify-content-center">
+  
   <div class="col-md-8">
     <h1 class="h3 mb-o">sign_Up</h1>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -32,7 +33,9 @@
      <%= f.submit "Sign up",class: "btn btn-primary"%>
     </div>
      <% end %>
+     
    <%= render "user/shared/links" %>
   </div>
+  
  </div>
 </div>

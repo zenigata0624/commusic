@@ -1,10 +1,11 @@
 <div class= "container mt-5">
  <div class="row justify-content-center">
+  
   <div class="col-md-8">
    <h3 class=" text-center mt-3">Followers</h3>
     <table class= "table mt-5">
      <thead class="thead-light">
-     <% if @user.exists? %>
+      <% if @user.exists? %>
       <tr>
        <th>image</th>
        <th>名前</th>
@@ -22,10 +23,11 @@
        <%end %>
      </tbody>
     </table>
-       <% else %>
+      <% else %>
        <h3 class=" text-center mt-3">フォロワー ユーザーはいません</h3>
-       <% end %>
+      <% end %>
     <%= paginate @user %>
    </div>
+   
   </div>
  </div>

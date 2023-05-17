@@ -1,37 +1,40 @@
 <div class="container">
- <%= render 'admin/shared/flash_messages' %>
+  <%= render 'admin/shared/flash_messages' %>
  <div class="row">
+  
   <div class="col-md-3">
    <div class="card-color">
-     <%= image_tag @music.get_music_image(300, 300), class: "img-fluid rounded mb-3" %>
-    <div class="card-body">
-     <h5 class="card-title">楽曲名: <%= @music.music_name %></h5>
-     <h5 class="card-title">楽曲を削除する: <%= link_to "Destroy", admin_music_path(@music), method: :delete, class: "btn btn-danger mb-3", data: { confirm: "本当に削除しますか？" }  %></h5>
-    </div>
+    <%= image_tag @music.get_music_image(300, 300), class: "img-fluid rounded mb-3" %>
+     <div class="card-body">
+      <h5 class="card-title">楽曲名: <%= @music.music_name %></h5>
+      <h5 class="card-title">楽曲を削除する: <%= link_to "Destroy", admin_music_path(@music), method: :delete, class: "btn btn-danger mb-3", data: { confirm: "本当に削除しますか？" }  %></h5>
+     </div>
    </div>
   </div>
+  
   <div class= "col-md-9 text-center">
    <h3>Comment</h3>
-  <table class= "table mt-5">
-   <thead class="thead-light">
-    <tr>
-     <th>Plofile_image</th>
-     <th>名前</th>
-     <th>コメント</th>
-     <th colspan="2"></th>
-    </tr>
-   </thead>
-   <% @music_comments.each do |music_comment| %>
-   <tdody>
-    <tr>
-     <td><%= image_tag music_comment.user.get_profile_image(50, 50), class: "mr-3" %></td>
-     <td><%= music_comment.user.name %></td>
-     <td><%= music_comment.comment %></td>
-     <td><%= link_to "削除", admin_music_music_comment_path(music_comment.music.id, music_comment.id), class: "btn btn-danger", remote: true, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-    </tr>
-   <% end %>
-   </tbody>
-  </table>
+   <table class= "table mt-5">
+    <thead class="thead-light">
+     <tr>
+       <th>Plofile_image</th>
+       <th>名前</th>
+       <th>コメント</th>
+       <th colspan="2"></th>
+     </tr>
+    </thead>
+    <% @music_comments.each do |music_comment| %>
+    <tdody>
+      <tr>
+       <td><%= image_tag music_comment.user.get_profile_image(50, 50), class: "mr-3" %></td>
+       <td><%= music_comment.user.name %></td>
+       <td><%= music_comment.comment %></td>
+       <td><%= link_to "削除", admin_music_music_comment_path(music_comment.music.id, music_comment.id), class: "btn btn-danger", remote: true, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      </tr>
+     <% end %>
+    </tbody>
+   </table>
   </div>
+  
  </div>
 </div>

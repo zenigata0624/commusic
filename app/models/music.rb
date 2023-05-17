@@ -14,6 +14,8 @@ class Music < ApplicationRecord
     length: { minimum: 1, maximum: 20 }
   validates :singer ,presence: true,
     length: { minimum: 1, maximum: 20 }
+  validates :music_notes ,presence: true,
+    length: { minimum: 1, maximum: 150 }
 
    def favorited_by?(user)
     favorites.exists?(user_id: user.id)

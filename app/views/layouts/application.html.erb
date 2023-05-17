@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  
+   <head>
     <meta charset="UTF-8">
-    <title>Commusic-life</title>
+     <title>Commusic-life</title>
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body class= "body">
-     <%= render "layouts/header"%>
-    <%= yield %>
+     <%= csrf_meta_tags %>
+     <%= csp_meta_tag %>
+     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   </head>
+  
+   <body class= "body">
+      <%= render "layouts/header"%>
+      <%= yield %>
    </body>
-    <footer class="footer">
-      <div class='container'>
-       <div class='row'>
-        <div class='col'>
-        <p>COMMUSIC_LIFE</p>
-        </div>
-       </div>
+   
+   <footer class="footer">
+    <div class='container'>
+     <div class='row'>
+      <div class='col'>
+       <p>COMMUSIC_LIFE</p>
       </div>
-    </footer>
+     </div>
+    </div>
+   </footer>
+    
 </html>

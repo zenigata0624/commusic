@@ -1,6 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
    <div class="container">
+    
      <% unless admin_signed_in? %>
      <a class="navbar-brand" href="<%= root_path %>">
      <i class="fas fa-seedling"></i>
@@ -10,12 +11,15 @@
      <% else %>
        <a class="navbar-brand" href="<%=admin_root_path %>">Commusic_LIFE</a>
      <% end %>
+     
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
      </button>
+     
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
        <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
+        
         <% if request.fullpath.include? "/admin" %>
          <li class="border rounded mr-2">
           <%=link_to "ホーム" ,admin_root_path, class:"nav-link text-light"%>
@@ -33,6 +37,7 @@
           <%=link_to "ログアウト",destroy_admin_session_path,method: :delete, class:"nav-link text-light"%>
          </li>
         <% end %>
+        
         <% elsif user_signed_in? %>
          <li class="border rounded mr-2">
           <%=link_to new_user_session_path, class:"nav-link text-light" do %>
@@ -64,6 +69,7 @@
            LOGOUT
           <% end %>
          </li>
+         
         <% else %>
          <li class="border rounded mr-2">
           <%=link_to root_path, class:"nav-link text-light" do %>
@@ -101,7 +107,10 @@
            Admin
           <% end %>
          </li>
-      <% end %>
-    </ul>
+         <% end %>
+        </ul>
+       </div>
+       
+  </div>
  </nav>
 </header>

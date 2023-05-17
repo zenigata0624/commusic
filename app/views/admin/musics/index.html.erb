@@ -1,36 +1,38 @@
 <div class= "container mt-5">
  <div class="row justify-content-center">
-  <div class="col-md-8　text-center ">
+  
+  <div class="col-md-8 text-center ">
    <%= render 'admin/shared/flash_messages' %>
     <h3 class="mt-3">Musics</h3>
    <table class= "table mt-5">
-    <thead class="thead-light">
-     <tr>
-      <th>音楽名</th>
-      <th>歌手名</th>
-      <th>ジャンル名</th>
-      <th>投稿者</th>
-      <th>コメント数</th>
-      <th colspan="2"></th>
-     </tr>
-    </thead>
+     <thead class="thead-light">
+      <tr>
+        <th>音楽名</th>
+        <th>歌手名</th>
+        <th>ジャンル名</th>
+        <th>投稿者</th>
+        <th>コメント数</th>
+        <th colspan="2"></th>
+      </tr>
+     </thead>
      <% @musics.each do |music| %>
      <tbody>
-     <tr>
-      <td><%= link_to music.music_name,admin_music_path(music.id) %></td>
-      <td><%= music.singer %></td>
-      <td><%= music.music_genre.genre_name %></td>
-      <td><%= music.user.name %></td>
-      <td><%= music.music_comments.count %></td>
-      <td><%= link_to "Destroy",admin_music_path(music), method: :delete ,class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %></td>
-     </tr>
+      <tr>
+        <td><%= link_to music.music_name,admin_music_path(music.id) %></td>
+        <td><%= music.singer %></td>
+        <td><%= music.music_genre.genre_name %></td>
+        <td><%= music.user.name %></td>
+        <td><%= music.music_comments.count %></td>
+        <td><%= link_to "Destroy",admin_music_path(music), method: :delete ,class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %></td>
+      </tr>
      <% end %>
-    </tbody>
+     </tbody>
    </table>
-    <div class= "paginate"> 
-      <%= paginate @musics %>
-   </div>
+     <div class= "paginate"> 
+       <%= paginate @musics %>
+     </div>
   </div>
+  
  </div>
 </div>
   

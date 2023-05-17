@@ -18,7 +18,7 @@ class User::FavoritesController < ApplicationController
  end
 
  def index
-   @favorites = current_user.favorites.page(params[:page]).per(10)
+   @favorites = current_user.favorites.page(params[:page]).per(6)
  end
 
 

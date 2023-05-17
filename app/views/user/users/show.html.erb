@@ -2,80 +2,85 @@
  <div class="container">
   <div class="row">
    <div class="col-md-3 col-md-offset-2">
+    
     <div class="card-color">
-       <% if @user.present? %>
-       <%= image_tag @user.get_profile_image(100,100), class: "card-img-top" %>
+      <%= image_tag @user.get_profile_image(100,100), class: "card-img-top" %>
      <div class="card-body">
-      <h5 class="card-title">Name:  <%= @user.name %></h5>
-      <% if @user.introduction.present? %>
-      <p class="card-text">自己紹介:<%= simple_format(@user.introduction) %></p>
-      <% end %>
-      <h5 class="card-subtitle mb-2 "><%= link_to "いいね楽曲一覧", music_favorites_path(current_user) %></h5>
-      <h5 class="card-subtitle mb-2 ">フォロー数: <%= link_to @user.followings.count, user_followings_path(@user) %></h5>
-      <h5 class="card-subtitle mb-2 ">フォロワー数: <%= link_to @user.followers.count ,  user_followers_path(@user) %></h5>
+        <h5 class="card-title">Name:  <%= @user.name %></h5>
+       <% if @user.introduction.present? %>
+        <p class="card-text">自己紹介:<%= simple_format(@user.introduction) %></p>
+       <% end %>
+      
+        <h5 class="card-subtitle mb-2 "><%= link_to "いいね楽曲一覧", music_favorites_path(current_user) %></h5>
+        <h5 class="card-subtitle mb-2 ">フォロー数: <%= link_to @user.followings.count, user_followings_path(@user) %></h5>
+        <h5 class="card-subtitle mb-2 ">フォロワー数: <%= link_to @user.followers.count ,  user_followers_path(@user) %></h5>
+
        <% if @user != current_user %>
-       <% if current_user.following?(@user) %>
-      <h5 class="card-subtitle mb-3 "> <%= link_to "フォローを外す",user_relationships_path(@user.id), class: "btn btn-primary" ,method: :delete %></h5>
-       <% else %>
-      <h5 class="card-subtitle mb-2 "> <%= link_to "フォローをする",user_relationships_path(@user.id), class: "btn btn-primary", method: :post %></h5>
-       <% end %>
-       <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user)  %>
-      <h5 class="card-subtitle mb-2 "><%= link_to "chatを始める", chat_path(@user.id) , class: "btn btn-primary" %></th>
-       <% end %>
+        <% if current_user.following?(@user) %>
+         <h5 class="card-subtitle mb-3 "> <%= link_to "フォローを外す",user_relationships_path(@user.id), class: "btn btn-primary" ,method: :delete %></h5>
+        <% else %>
+         <h5 class="card-subtitle mb-2 "> <%= link_to "フォローをする",user_relationships_path(@user.id), class: "btn btn-primary", method: :post %></h5>
+        <% end %>
+        
+        <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user)  %>
+        <h5 class="card-subtitle mb-2 "><%= link_to "chatを始める", chat_path(@user.id) , class: "btn btn-primary" %></th>
+        <% end %>
        <% end %>
      </div>
     </div>
+    
      <div class= "botton" style="margin-top: 20px; text-align: center;">
       <% if @user == current_user && !current_user.guest? %>
-      <%=link_to "User_Edit", edit_user_path(@user.id) ,class: 'btn btn-success' %>
+       <%=link_to "User_Edit", edit_user_path(@user.id) ,class: 'btn btn-success' %>
       <% end %>
      </div>
-      <% end %>
+     
      <div class= "paginate"> 
-      <%= paginate @musics %>
-      </div>
+       <%= paginate @musics %>
      </div>
-    <div class="col-md-8 text-center">
-    
+     
+    </div>
+     
+   <div class="col-md-8 text-center">
      <h1 class="h3 mt-3">Post_Musics</h1>
       <% if @musics.empty? %>
-      <h1 class="h3 mt-5">投稿楽曲はありません</h1>
-        <% else %>
-        <table class= "table mt-3">
-         <thead class="thead-light">
-          <tr>
-           <th>楽曲</th>
-           <th>歌手名</th>
-           <th>ジャンル名</th>
-           <th>投稿者</th>
-           <th>いいね</th>
-           <th>コメント</th>
-           <th colspan="3"></th>
-          </tr>
-         </thead>
-         <tbody>
-           <% @musics.each do |music| %>
-          <tr>
-           <td><%= link_to music.music_name, music_path(music.id) %></td>
-           <td><%= music.singer %></td>
-           <td><%= music.music_genre.genre_name %></td>
-           <td><%= music.user.name %></td>
+        <h1 class="h3 mt-5">投稿楽曲はありません</h1>
+      <% else %>
+       <table class= "table mt-3">
+        <thead class="thead-light">
+         <tr>
+          <th>楽曲</th>
+          <th>歌手名</th>
+          <th>ジャンル名</th>
+          <th>投稿者</th>
+          <th>いいね</th>
+          <th>コメント</th>
+          <th colspan="3"></th>
+         </tr>
+        </thead>
+        <tbody>
+         <% @musics.each do |music| %>
+         <tr>
+          <td><%= link_to music.music_name, music_path(music.id) %></td>
+          <td><%= music.singer %></td>
+          <td><%= music.music_genre.genre_name %></td>
+          <td><%= music.user.name %></td>
            <td id="favorite_buttons_<%= music.id %>">
-              <%= render "user/favorites/favorite", music: music %>
+            <%= render "user/favorites/favorite", music: music %>
            </td>
-           <td><%= music.music_comments.count %></td>
+          <td><%= music.music_comments.count %></td>
            <td>
-             <% if music.user == current_user %>
+            <% if music.user == current_user %>
              <%=link_to "Edit", edit_music_path(music.id) ,class: 'btn btn-success' %>
              <%= link_to "Destroy", music_path(music), method: :delete ,class: "btn btn-danger", data: { confirm: "投稿した楽曲が消えてしまいます、よろしいですか？" }%>
            </td>
-          </tr>
-           <% end %>
-           <% end %>
-         </tbody>
-         </table>
+         </tr>
+            <% end %>
          <% end %>
-       </div>
+        </tbody>
+       </table>
+      <% end %>
     </div>
-   </div>
+    
  </div>
+</div>

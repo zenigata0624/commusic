@@ -1,38 +1,43 @@
 <div class= "container mt-3">
   <div class="row justify-content-center">
+    
     <div class = "col-8">
       <%= render 'user/shared/flash_messages' %>
       <h3 class=" text-center mt-3">Chat</h3>
+      
       <div class="d-flex justify-content-between">
-        <h5 class="text-left">User_Name<br>
-         <%= @user.name %></h5>
-        <h5 class="text-right">
-      　<span class="right-align">My_Name</span><br>
-        <span class="left-align"><%= current_user.name %></span>
-        </h5>
+         <h5 class="text-left">User_Name<br>
+          <%= @user.name %>
+         </h5>
+         <h5 class="text-right">
+        　<span class="right-align">My_Name</span><br>
+          <span class="left-align"><%= current_user.name %></span>
+         </h5>
       </div>
+      
       <% @chats.each do |chat| %>
-      <% if chat.user_id == current_user.id %>
-     <div class="message-container text-right">
-    　<label class="message-label"><%= chat.message %></label>
-      <%= link_to "Destroy", chat_path(chat), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger float-right ml-2" %>
-     </div>
-      <% else %>
-      <div class="message-container text-left">
-       <label class="message-label" style="white-space: pre-wrap;"><%= chat.message %></label>
-      </div>
+        <% if chat.user_id == current_user.id %>
+         <div class="message-container text-right">
+    　     <label class="message-label"><%= chat.message %></label>
+          <%= link_to "Destroy", chat_path(chat), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger float-right ml-2" %>
+         </div>
+        <% else %>
+         <div class="message-container text-left">
+          <label class="message-label" style="white-space: pre-wrap;"><%= chat.message %></label>
+         </div>
+        <%end%>
       <%end%>
-     <%end%>
-     <div class="mt-3">
-      <%= form_with model: @chat do |f| %>
-     <div class="form-group">
-      <%= f.text_area :message, rows: '6', class: 'form-control', wrap: :virtual %>
-      <%= f.hidden_field :room_id %>
-     </div>
-      <%= f.submit "送信", class: "btn btn-primary"  %>
-      <% end %>
+      
+      <div class="mt-3">
+        <%= form_with model: @chat do |f| %>
+       <div class="form-group">
+        <%= f.text_area :message, rows: '6', class: 'form-control', wrap: :virtual %>
+        <%= f.hidden_field :room_id %>
+       </div>
+        <%= f.submit "送信", class: "btn btn-primary"  %>
+        <% end %>
+      </div>
     </div>
-   </div>
-  </div>
+   
  </div>
 </div>

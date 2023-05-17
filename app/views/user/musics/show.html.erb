@@ -1,56 +1,56 @@
  <%= render 'user/shared/flash_messages' %>
 
-<div class="container">
+ <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <div class="card-color">
+   
+   <div class="col-md-3">
+     <div class="card-color">
        <%= image_tag @music.get_music_image(100,100), class: "card-img-top" %>
       <div class="card-body">
         <h5 class="card-title">楽曲名: <%= @music.music_name %></h5>
         <h5 class="card-subtitle mb-2 ">歌手名: <%= @music.singer %></h5>
-        <% if @music.music_genre.present? %>
         <h5 class="card-subtitle mb-2 ">ジャンル名: <%= @music.music_genre.genre_name %></h5>
-        <% end %>
         <h5 class="card-subtitle mb-2 ">閲覧数: <%= @music.view_counts.count %></h5>
-       <% if @music.user.present? %>
         <h5 class="card-subtitle mb-2 ">投稿者名: <%= link_to @music.user.name ,user_path(@music.user.id) %></h5>
-       <% end %>
-       <p class="card-text">自己紹介文<%= simple_format(@music.music_notes) %></p>
+       <p class="card-text">紹介文<%= simple_format(@music.music_notes) %></p>
        <h5>いいね数：</h5>
        <div id="favorite_buttons_<%= @music.id %>">
        <h5 class="card-subtitle mb-2 "><%= render "user/favorites/favorite", music: @music %></h5>
        </div>
       </div>
      </div>
-      <div class= "botton" style="margin-top: 20px; text-align: center; ">
+     
+     <div class= "botton" style="margin-top: 20px; text-align: center; ">
        <% if @music.user == current_user %>
        <%=link_to "Music_Edit", edit_music_path(@music.id) ,class: 'btn btn-success' %>
-       </div>
-       <div class= "botton" style="margin-top: 20px; text-align: center; ">
+      </div>
+      <div class= "botton" style="margin-top: 20px; text-align: center; ">
         <%= link_to " music_Destroy", music_path(@music), method: :delete ,class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
         <% end %>
       </div>
       <div class= "paginate"> 
        <%= paginate @music_comments %>
      </div>
-    </div>
-    <div class="col-md-8">
+   </div>
+    
+   <div class="col-md-8">
      <% if current_user.nil? || current_user.guest? %>
-     <p class="text-center mt-5">ゲストユーザーはコメントを見ることはできません。</p>
-       <% else %>
-     <h3 class="text-center mt-1">Comment</h3>
-    <div class="music-comments">
-      <%= render partial: 'user/music_comments/music_comment', collection: @music_comments %>
+       <p class="text-center mt-5">ゲストユーザーはコメントを見ることはできません。</p>
+      <% else %>
+       <h3 class="text-center mt-1">Comment</h3>
+     <div class="music-comments">
+       <%= render partial: 'user/music_comments/music_comment', collection: @music_comments %>
      <% end %>
-    </div>
+     </div>
      <div class="mt-3">
       <%= form_with model: [@music, @music_comment], local: true do |f| %>
       <div class="form-group">
-        <%= f.text_area :comment, rows: '6', class: 'form-control', wrap: :virtual %>
+      <%= f.text_area :comment, rows: '6', class: 'form-control', wrap: :virtual %>
       </div>
       <%= f.submit "送信", class: "btn btn-primary" %>
      <% end %>
     </div>
    </div>
+    
+  </div>
  </div>
-</div>

@@ -1,37 +1,42 @@
 <div class= "container mt-5">
  <div class="row justify-content-center">
    <%= render 'user/shared/flash_messages' %>
+   
   <div class="col-md-8">
     <h3 class=" text-center mt-3">Edit Music</h3>
-  <%= form_with model: @music ,url: music_path(@music.id), method: :patch  do |f| %>
+   <%= form_with model: @music ,url: music_path(@music.id), method: :patch  do |f| %>
  
-  <div class="form-group">
-    <%= f.label :music_name, "music_name", class: "h5" %>
-    <%= f.text_field :music_name, class: "form-control", wrap: :virtual %>
-  </div>
+    <div class="form-group">
+     <%= f.label :music_name, "music_name", class: "h5" %>
+     <%= f.text_field :music_name, class: "form-control", wrap: :virtual %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :singer, "singer", class: "h5" %>
-    <%= f.text_field :singer, class: "form-control", wrap: :virtual %>
-  </div>
+    <div class="form-group">
+     <%= f.label :singer, "singer", class: "h5" %>
+     <%= f.text_field :singer, class: "form-control", wrap: :virtual %>
+    </div>
  
-  <div class="form-group">
-  <%= f.label :genre_name, "Genre", class: "h5" %>
-  <%= f.select :music_genre_id,
-    options_for_select(@music_genres.map { |g| [g.genre_name, g.id] },
+    <div class="form-group">
+     <%= f.label :genre_name, "Genre", class: "h5" %>
+     <%= f.select :music_genre_id,
+      options_for_select(@music_genres.map { |g| [g.genre_name, g.id] },
       selected: @music.music_genre_id),
-    {}, class: "form-control" %>
-  </div>
+      {}, class: "form-control" %>
+    </div>
   
-  <div class="form-group">
-    <%= f.label :music_notes, "Introduction", class: "h5"%>
-    <%= f.text_area :music_notes, class: "form-control", rows: '6', wrap: :virtual %>
-  </div>
+    <div class="form-group">
+     <%= f.label :music_notes, "Introduction", class: "h5"%>
+     <%= f.text_area :music_notes, class: "form-control", rows: '6', wrap: :virtual %>
+    </div>
   
-  <div class="form-group">
-    <%= f.label :music_image,  "Profile Image",class: "h5" %><br>
-    <%= f.file_field :music_image %>
-  </div>
+    <div class="form-group">
+     <%= f.label :music_image,  "Profile Image",class: "h5" %><br>
+     <%= f.file_field :music_image %>
+    </div>
 
-  <p><%= f.submit '変更する', class: "btn btn-primary" %></p>
-<% end %>
+    <p><%= f.submit '変更する', class: "btn btn-primary" %></p>
+   <% end %>
+  </div>
+  
+ </div>
+</div>

@@ -28,11 +28,11 @@ class User::UsersController < ApplicationController
   end
 
   def followings
-    @users = @user.followings.page(params[:page]).per(7)
+    @users = @user.followings.page(params[:page]).per(5)
   end
 
   def followers
-    @user = @user.followers.page(params[:page]).per(7)
+    @user = @user.followers.page(params[:page]).per(5)
   end
 
    private

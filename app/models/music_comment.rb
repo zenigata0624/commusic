@@ -3,5 +3,5 @@ class MusicComment < ApplicationRecord
   belongs_to :music
   
   validates :comment ,presence: true,
-   length: { minimum: 1, maximum: 200 }
+   length: { minimum: 1, maximum: 150}
 end
