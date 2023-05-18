@@ -5,6 +5,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   before_action :ensure_normal_user, only: %i[update destroy create]
 
+
+  # guestユーザーのアクセス制限についての記述です
    def ensure_normal_user
       resource = current_user || User.new
     if resource.email == 'guest@example.com'

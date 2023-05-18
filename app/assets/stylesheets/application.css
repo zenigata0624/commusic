@@ -63,6 +63,7 @@ tbody{
   background-color: white;
 }
 
+  /* ここから下のcommentはshowページのコメント欄の記述です */
   
   .music-comment {
   background-color: #f5f5f5;
@@ -101,6 +102,7 @@ tbody{
   font-size: 12px;
   color: #888;
 }
+
 
 
 .paginate {

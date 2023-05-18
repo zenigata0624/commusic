@@ -17,6 +17,7 @@ class User::SessionsController < Devise::SessionsController
       user_path(resource)
    end
 
+  # guestユーザーのサインインの記述です
    def guest_sign_in
      user = User.guest
      sign_in user

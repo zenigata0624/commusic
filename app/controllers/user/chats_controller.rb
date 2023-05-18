@@ -2,6 +2,8 @@ class User::ChatsController < ApplicationController
 
   before_action :following_check, only: [:show,]
 
+
+  #相互フォロワーが退会中の場合とチャットルームの有無を条件分岐としています。
   def show
     @user = User.find(params[:id])
    if @user.flag
@@ -28,7 +30,7 @@ class User::ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
    if @chat.save
       redirect_to request.referer, flash: { notice: "コメントが投稿されました" }
-    else
+   else
       redirect_to request.referer, flash: { notice: "コメントの投稿が失敗しました。" }
    end
   end
@@ -41,6 +43,7 @@ class User::ChatsController < ApplicationController
 
  private
 
+ #相互フォロワーかのチェックの記述です
   def following_check
     user = User.find(params[:id])
     unless current_user.following?(user) && user.following?(current_user)

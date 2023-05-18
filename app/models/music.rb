@@ -17,10 +17,14 @@ class Music < ApplicationRecord
   validates :music_notes ,presence: true,
     length: { minimum: 1, maximum: 150 }
 
+  
+  #いいねの有無を確認する記述です
    def favorited_by?(user)
     favorites.exists?(user_id: user.id)
    end
-
+ 
+ 
+  #画像が添付されていない場合はデフォルト画像を表示し、指定したサイズでリサイズします
    def get_music_image(width, height)
       unless music_image.attached?
         file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -29,6 +33,7 @@ class Music < ApplicationRecord
        music_image.variant( gravity: :center, resize:"#{width} x #{height}^", crop:"#{width} x #{height}+0+0")
    end
 
+  #検索機能の記述です
    def self.ransackable_attributes(auth_object = nil)
     column_names
    end

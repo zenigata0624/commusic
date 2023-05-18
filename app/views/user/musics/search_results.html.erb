@@ -3,6 +3,8 @@
   
   <div class="col-md-8 text-center">
   <%= render 'user/shared/flash_messages' %>
+  
+  <%# 検索結果の表示の分岐をしています %>
       <% if @musics.empty? %>
       <p>検索した楽曲はありません。</p>
       <% else %>
@@ -10,5 +12,6 @@
     <% end %>
    <%= paginate @musics %>
   </div>
+  
  </div>
 </div>

@@ -3,6 +3,8 @@
   
   <div class="col-md-8">
    <h3 class=" text-center mt-3">Favorites List"</h3>
+   
+  <%# いいね楽曲がない場合、条件分岐をします。 %>
      <% if @favorites.empty? %>
       <h3 class=" text-center mt-3">いいねした楽曲はありません</h3>
      <% else %>

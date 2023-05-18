@@ -18,6 +18,8 @@
      
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
        <ul class="navbar-nav ml-auto">
+        
+        <%# 管理者とユーザーの条件分岐を行っています%>
         <% if admin_signed_in? %>
         
         <% if request.fullpath.include? "/admin" %>

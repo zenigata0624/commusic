@@ -2,6 +2,7 @@
  <%= render 'user/shared/flash_messages' %>
  <div class='row'>
   
+ <%# renderでジャンル一覧の表示、search_form_forの文で検索ができるようになっております%>
   <div class="col-md-3">
    <%= render "user/music_genres/music_genre" ,music_genres: @music_genres %>
    <div class="mt-3">

@@ -16,6 +16,7 @@
      <%= f.text_area :introduction, class: "form-control", rows: '6', wrap: :virtual %>
    </div>
   
+  <%# 退会フラグの有効と無効の切り替えを行っています %>
    <div class="form-group">
      <%= f.radio_button :flag, :true, {class: "h5"} %>
      <%= f.label :flag, "退会" %>

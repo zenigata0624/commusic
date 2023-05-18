@@ -2,15 +2,17 @@
  <div class="container">
   <div class="row">
    <div class="col-md-3 col-md-offset-2">
-    
+
     <div class="card-color">
       <%= image_tag @user.get_profile_image(100,100), class: "card-img-top" %>
      <div class="card-body">
         <h5 class="card-title">Name:  <%= @user.name %></h5>
+
+        <%# 自己紹介の際、nillの場合は表示しないようにしています %>
        <% if @user.introduction.present? %>
         <p class="card-text">自己紹介:<%= simple_format(@user.introduction) %></p>
        <% end %>
-      
+
         <h5 class="card-subtitle mb-2 "><%= link_to "いいね楽曲一覧", music_favorites_path(current_user) %></h5>
         <h5 class="card-subtitle mb-2 ">フォロー数: <%= link_to @user.followings.count, user_followings_path(@user) %></h5>
         <h5 class="card-subtitle mb-2 ">フォロワー数: <%= link_to @user.followers.count ,  user_followers_path(@user) %></h5>
@@ -21,7 +23,8 @@
         <% else %>
          <h5 class="card-subtitle mb-2 "> <%= link_to "フォローをする",user_relationships_path(@user.id), class: "btn btn-primary", method: :post %></h5>
         <% end %>
-        
+
+        <%# 相互フォロワーの場合chatを始めるボタンが表示されます %>
         <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user)  %>
         <h5 class="card-subtitle mb-2 "><%= link_to "chatを始める", chat_path(@user.id) , class: "btn btn-primary" %></th>
         <% end %>
@@ -34,21 +37,21 @@
        <%=link_to "User_Edit", edit_user_path(@user.id) ,class: 'btn btn-success' %>
       <% end %>
      </div>
-     
-     <div class= "paginate"> 
+
+     <div class= "paginate">
        <%= paginate @musics %>
      </div>
-     
+
     </div>
-     
+
    <div class="col-md-8 text-center">
      <h1 class="h3 mt-3">Post_Musics</h1>
       <% if @musics.empty? %>
         <h1 class="h3 mt-5">投稿楽曲はありません</h1>
       <% else %>
-     <%= render 'user/musics/music_index', musics: @musics %> 
+     <%= render 'user/musics/music_index', musics: @musics %>
       <% end %>
    </div>
-    
+
  </div>
 </div>

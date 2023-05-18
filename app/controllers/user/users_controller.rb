@@ -45,6 +45,8 @@ class User::UsersController < ApplicationController
     params.require(:user).permit(:name,:profile_image,:introduction)
   end
 
+
+# ユーザーと管理者、ゲストユーザーのアクセス制限についての記述です
  def correct_user
   @user = User.find(params[:id])
   unless (@user == current_user || (@user.guest? && current_user&.guest?)) || current_user&.admin?

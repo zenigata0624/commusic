@@ -15,6 +15,7 @@
          </h5>
       </div>
       
+      <%# ログインユーザーとログインユーザーではないチャットの表示を分けています%>
       <% @chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
          <div class="message-container text-right">

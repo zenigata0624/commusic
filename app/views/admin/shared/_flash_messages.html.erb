@@ -1,3 +1,5 @@
+
+<%# フラッシュメッセージを表示する部分テンプレートです%>
 <% flash.each do |type, message| %>
   <div class="alert alert-<%= type %>">
     <%= message %>

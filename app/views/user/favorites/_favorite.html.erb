@@ -1,3 +1,5 @@
+
+<%# 非同期機能のため、いいね部分を部分テンプレート化しています。%>
  <% if music.favorited_by?(current_user) %>
     <p><%= link_to music_favorite_path(music.id, music.favorites.find_by(user_id: current_user.id)),method: :delete ,remote: true do %>
      ♥<%= music.favorites.count %>

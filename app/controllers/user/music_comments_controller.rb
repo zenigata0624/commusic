@@ -1,5 +1,6 @@
 class User::MusicCommentsController < ApplicationController
 
+
  def create
   @music = Music.find(params[:music_id])
   if current_user.nil? || current_user.guest?

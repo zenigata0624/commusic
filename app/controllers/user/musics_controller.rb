@@ -7,6 +7,7 @@ class User::MusicsController < ApplicationController
      @music = Music.new
   end
 
+  #guestユーザーに対する条件分岐と投稿に関する条件分岐です
   def create
    if current_user.nil? || current_user.guest?
      redirect_to  musics_path, flash: { notice: "ゲストユーザーは投稿できません。" }
@@ -26,6 +27,8 @@ class User::MusicsController < ApplicationController
    end
   end
 
+
+ #ジャンルと検索の条件分岐を行っています
   def index
     @music_genres = MusicGenre.all
     @q = Music.ransack(params[:q])
@@ -39,22 +42,26 @@ class User::MusicsController < ApplicationController
    end
   end
 
+
+  #ViewCountの記述で閲覧数に関する記述です
   def show
    @music = Music.find(params[:id])
    @user = User.find_by(id: @music.user_id)
    @music_comment = MusicComment.new
    @music_comments = @music.music_comments.order(created_at: :desc).page(params[:page]).per(3)
-  unless ViewCount.find_by(user_id: current_user.id, music_id: @music.id)
+   unless ViewCount.find_by(user_id: current_user.id, music_id: @music.id)
     current_user.view_counts.create(music_id: @music.id)
-  end
+   end
   end
 
-
+ 
+ 
   def edit
     @music = Music.find(params[:id])
     @user= current_user
     @music_genres = MusicGenre.all
   end
+
 
   def update
     @music = Music.find(params[:id])
@@ -74,6 +81,7 @@ class User::MusicsController < ApplicationController
     music.destroy
     redirect_to musics_path,flash: {notice: "投稿を削除しました"}
   end
+
 
   def search
    if params[:q].nil? || params[:q][:music_name_cont].blank?
@@ -97,10 +105,11 @@ class User::MusicsController < ApplicationController
     params.require(:music).permit(:music_name,:singer,:music_genre_id,:music_notes,:music_image,:genre_name)
   end
 
+ #ログインユーザー以外のアクセス制限をしております
  def correct_user
     @music=Music.find(params[:id])
     @user=@music.user
-    redirect_to(muscs_path) unless @user==current_user
+    redirect_to(musics_path) unless @user==current_user
  end
 
 end

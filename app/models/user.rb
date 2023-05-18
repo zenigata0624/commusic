@@ -27,6 +27,7 @@ class User < ApplicationRecord
          validates :introduction ,length: { maximum: 100 }
 
 
+   #guestユーザー作成時の記述です
    def self.guest
      find_or_create_by!(name: 'guest',email: 'guest@example.com') do |user|
      user.password = SecureRandom.urlsafe_base64(10)
@@ -34,10 +35,12 @@ class User < ApplicationRecord
     end
    end
 
+   #guestユーザーのアクセス制限をかける際に使っております
    def guest?
     email == 'guest@example.com'
    end
 
+   #退会フラグが無効な場合にアクティブとする
    def active_for_authentication?
     super && (flag == false)
    end
@@ -50,10 +53,13 @@ class User < ApplicationRecord
     relationships.find_by(followed_id: user_id).destroy
    end
 
+   #フォローの有無を見る記述です
    def following?(user)
     followings.include?(user)
    end
 
+
+   #画像が添付されていない場合はデフォルト画像を表示し、指定したサイズでリサイズします
    def get_profile_image(width, height)
     unless profile_image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
