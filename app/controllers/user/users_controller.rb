@@ -11,7 +11,7 @@ class User::UsersController < ApplicationController
   end
 
   def show
-     @musics = @user.musics.page(params[:page]).per(5)
+     @musics = @user.musics.page(params[:page]).per(4)
   end
 
 
