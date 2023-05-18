@@ -1,5 +1,5 @@
 
-# "Commusic Life"（コミュジックライフ） 
+# "Commusic Life"（コミュジックライフ）
 コミュニティミュージックライフ
 
 音楽を中心としたコミュニティのライフスタイル
@@ -65,10 +65,25 @@
 
 好きな音楽について語り合いたい時
 
+
 ## 設計書
-<...>
+
+- 実装機能リスト : https://docs.google.com/spreadsheets/d/1qpXl7FvjLxKoJAQnbg5R4-_HeE_LMAmhxvfNJTzzCQo/edit#gid=885378170
+
+- ER図 : https://app.diagrams.net/?libs=general;er#G11mKksLTvoHE83MbPPVKtzdiHl9LdPBHU
+
+- アプリケーション設計書 : https://docs.google.com/spreadsheets/d/1gLIsGD3I7tdPTX_eH2AHGtmDCVrgnPXK7Yej9nQNVJg/edit#gid=549108681
+
+- ワイヤーフレーム : https://www.figma.com/file/0tZ1rt5nDNafYE3bVMW1dI/Untitled?type=design&node-id=0-1&t=E1h8BD9SS7mReYGq-0
+
+- テーブル定義書 : https://docs.google.com/spreadsheets/d/1QpMSI84XEC9ZDv01RNUVNAjszJMr6-nMPxT7NhkbJtg/edit#gid=1373217982
+
+- テスト仕様書 : https://docs.google.com/spreadsheets/d/1_59v9oTJdg4m45Zc8hGCZve7lc5PFq-V/edit#gid=653197086
+
+- ＷBSシート : https://docs.google.com/spreadsheets/d/1vArOBMkjcfYQ-ixaUOXoWLk_fWTdqnd3By9gtYTOAoY/edit#gid=1773513600
 
 ## 開発環境
+
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
