@@ -43,7 +43,7 @@ class User::MusicsController < ApplicationController
   end
 
 
-  #ViewCountの記述で閲覧数に関する記述です
+  #ViewCountの記述は閲覧数に関する記述です
   def show
    @music = Music.find(params[:id])
    @user = User.find_by(id: @music.user_id)
