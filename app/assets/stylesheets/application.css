@@ -42,10 +42,10 @@ h1,h3,div {
 
 body {
   background-image: url("unsplash1-13.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center;
-  height: 150vh;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
@@ -64,7 +64,7 @@ tbody{
 }
 
   /* ここから下のcommentはshowページのコメント欄の記述です */
-  
+
   .music-comment {
   background-color: #f5f5f5;
   padding: 10px;
@@ -76,7 +76,7 @@ tbody{
   border: 1px solid #ddd;
   padding: 10px;
   max-height: 80px;
-  overflow: auto; 
+  overflow: auto;
 }
 
 .comment-info {
