@@ -74,7 +74,7 @@
 
 - アプリケーション設計書 : https://docs.google.com/spreadsheets/d/1gLIsGD3I7tdPTX_eH2AHGtmDCVrgnPXK7Yej9nQNVJg/edit#gid=549108681
 
-- ワイヤーフレーム : https://www.figma.com/file/0tZ1rt5nDNafYE3bVMW1dI/Untitled?type=design&node-id=0-1&t=E1h8BD9SS7mReYGq-0
+- ワイヤーフレーム、画面推移 : https://www.figma.com/file/0tZ1rt5nDNafYE3bVMW1dI/Untitled?type=design&node-id=0-1&t=E1h8BD9SS7mReYGq-0
 
 - テーブル定義書 : https://docs.google.com/spreadsheets/d/1QpMSI84XEC9ZDv01RNUVNAjszJMr6-nMPxT7NhkbJtg/edit#gid=1373217982
 
