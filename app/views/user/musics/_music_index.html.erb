@@ -22,14 +22,14 @@
        <td><%= music.user.name %></td>
        <td id="favorite_buttons_<%= music.id %>">
         <%= render "user/favorites/favorite", music: music %>
-        </td>
-        <td><%= music.music_comments.count %></td>
-        <td><%= music.view_counts.count %></td>
-        <td>
+       </td>
+       <td><%= music.music_comments.count %></td>
+       <td><%= music.view_counts.count %></td>
+       <td>
         <% if music.user == current_user %>
         <%=link_to "Edit", edit_music_path(music.id) ,class: 'btn btn-success' %>
         <%= link_to "Destroy", music_path(music), method: :delete ,class: "btn btn-danger", data: { confirm: "投稿が消えてしまいます、本当に削除してもよろしいですか？" } %>
-        </td>
+       </td>
       </tr>
       <% end %>
      <% end %>
