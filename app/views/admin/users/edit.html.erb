@@ -18,10 +18,15 @@
   
   <%# 退会フラグの有効と無効の切り替えを行っています %>
    <div class="form-group">
-     <%= f.radio_button :flag, :true, {class: "h5"} %>
-     <%= f.label :flag, "退会" %>
-     <%= f.radio_button :flag, :false %>
-     <%= f.label :flag, "有効" %>
+     <%= f.label :flag_true , class: "h5" do %>
+      <%= f.radio_button :flag, true %>
+       退会
+     <% end %>
+     
+     <%= f.label :flag_false, class: "h5" do %>
+      <%= f.radio_button :flag, false %>
+       有効
+     <% end %>
    </div>
 
    <div class="form-group">

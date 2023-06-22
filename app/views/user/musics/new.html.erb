@@ -4,7 +4,7 @@
 
   <div class="col-md-8">
    <h3 class=" text-center mt-3">New Music</h3>
-   <%= form_with model: Music.new do |f| %>
+   <%= form_with model: @music do |f| %>
     <%= render 'user/musics/music_new',f: f,music_genres: @music_genres %>
      <p><%= f.submit 'Post', class: "btn btn-primary" %></p>
    <% end %>

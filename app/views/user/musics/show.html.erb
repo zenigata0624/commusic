@@ -2,7 +2,7 @@
 
  <div class="container">
   <div class="row">
-   
+
    <div class="col-md-3">
      <div class="card-color">
        <%= image_tag @music.get_music_image(100,100), class: "card-img-top" %>
@@ -19,7 +19,7 @@
        </div>
       </div>
      </div>
-     
+
      <div class= "botton" style="margin-top: 20px; text-align: center; ">
        <% if @music.user == current_user %>
        <%=link_to "Music_Edit", edit_music_path(@music.id) ,class: 'btn btn-success' %>
@@ -28,12 +28,11 @@
         <%= link_to " music_Destroy", music_path(@music), method: :delete ,class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
         <% end %>
       </div>
-      <div class= "paginate"> 
+      <div class= "paginate">
        <%= paginate @music_comments %>
      </div>
    </div>
-    
-    
+
     <%# showアクション内でのページネーションを行うため、部分テンプレートにしております %>
    <div class="col-md-8">
        <h3 class="text-center mt-1">Comment</h3>
@@ -42,15 +41,15 @@
      </div>
       <% if current_user.nil? || current_user.guest? %>
        <p class="text-center mt-5">ゲストユーザーはコメントをすることはできません。</p>
-     <% else %>
-      <%= form_with model: [@music, @music_comment], local: true do |f| %>
+      <% else %>
+       <%= form_with model: [@music, @music_comment], local: true do |f| %>
       <div class="form-group">
-        <%= f.text_area :comment, rows: '6', class: 'form-control', wrap: :virtual %>
+        <%= f.text_area :comment, rows: '6', class: 'form-control', wrap: :virtual , placeholder: '1文字以上150文字以内' %>
         <%= f.submit "送信", class: "btn btn-primary" %>
-      <% end %>
+       <% end %>
        </div>
-     <% end %>
+      <% end %>
    </div>
-    
+
   </div>
  </div>

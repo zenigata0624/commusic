@@ -11,7 +11,8 @@ class User::MusicCommentsController < ApplicationController
    if comment.save
     redirect_to music_path(@music.id) ,flash: {notice: 'コメントの投稿に成功しました'}
    else
-    redirect_to music_path(@music.id) ,flash: {notice: 'コメントの投稿に失敗しました'}
+    flash[:notice] = comment.errors.full_messages.join(', ')
+    redirect_to music_path(@music.id)
    end
   end
  end
@@ -20,7 +21,6 @@ class User::MusicCommentsController < ApplicationController
    @music= Music.find(params[:music_id])
    @music_comment= MusicComment.find(params[:id])
    @music_comment.destroy
-   @music_comment = MusicComment.new
    redirect_to music_path(@music.id),flash: {notice: 'コメントを削除しました'}
   end
 

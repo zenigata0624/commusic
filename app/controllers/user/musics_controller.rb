@@ -1,6 +1,6 @@
 class User::MusicsController < ApplicationController
 
-  before_action :correct_user,only: [:edit,:update,]
+  before_action :correct_user,only: [:edit,:update,:destroy]
   before_action :set_music_genre, only: [:new, :create]
 
   def new
@@ -18,7 +18,7 @@ class User::MusicsController < ApplicationController
     if @music.save
      redirect_to music_path(@music.id), flash: {notice: "投稿が完了しました"}
     else
-     flash.now[:notice] = "投稿の変更に失敗しました 、同じ名前の楽曲があるか,紹介文を１文字以上１５０文字以下にしてください"
+     flash.now[:notice] = @music.errors.full_messages.join(', ')
      @user= current_user
      @musics = Music.page(params[:page])
      @q = Music.ransack(params[:q])
@@ -54,8 +54,6 @@ class User::MusicsController < ApplicationController
    end
   end
 
- 
- 
   def edit
     @music = Music.find(params[:id])
     @user= current_user
@@ -71,7 +69,7 @@ class User::MusicsController < ApplicationController
     else
        @user = current_user
        @music_genres = MusicGenre.all
-       flash.now[:notice] = "投稿の変更に失敗しました 、同じ名前の楽曲があるか,紹介文を１文字以上１５０文字以下にしてください"
+       flash.now[:notice] = @music.errors.full_messages.join(', ')
       render :edit
     end
   end

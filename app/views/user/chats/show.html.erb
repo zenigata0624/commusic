@@ -19,12 +19,18 @@
       <% @chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
          <div class="message-container text-right">
-    　     <label class="message-label"><%= chat.message %></label>
-          <%= link_to "Destroy", chat_path(chat), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger float-right ml-2" %>
+         <label class="message-label"><%= chat.message %></label>
+         <%= link_to "Destroy", chat_path(chat), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger float-right ml-2" %>
+           <p class="message-info">
+           <%= chat.created_at.strftime("%Y-%m-%d %H:%M") %>
+           </p>
          </div>
         <% else %>
          <div class="message-container text-left">
           <label class="message-label" style="white-space: pre-wrap;"><%= chat.message %></label>
+           <p class="message-info">
+           <%= chat.created_at.strftime("%Y-%m-%d %H:%M") %>
+           </p>
          </div>
         <%end%>
       <%end%>
@@ -32,13 +38,12 @@
       <div class="mt-3">
         <%= form_with model: @chat do |f| %>
        <div class="form-group">
-        <%= f.text_area :message, rows: '6', class: 'form-control', wrap: :virtual %>
+        <%= f.text_area :message, rows: '6', class: 'form-control', wrap: :virtual , placeholder:'140文字以内' %>
         <%= f.hidden_field :room_id %>
        </div>
         <%= f.submit "送信", class: "btn btn-primary"  %>
         <% end %>
       </div>
-    </div>
-   
+      
  </div>
 </div>

@@ -2,12 +2,12 @@
  <%# new,editの部分テンプレートになります %> 
   <div class="form-group">
     <%= f.label :music_name, "music_name", class: "h5" %>
-    <%= f.text_field :music_name, class: "form-control", wrap: :virtual %>
+    <%= f.text_field :music_name, class: "form-control", wrap: :virtual, placeholder:'1文字以上20文字以内' %>
   </div>
 
   <div class="form-group">
     <%= f.label :singer, "Singer", class: "h5" %>
-    <%= f.text_field :singer, class: "form-control", wrap: :virtual %>
+    <%= f.text_field :singer, class: "form-control", wrap: :virtual , placeholder:'1文字以上20文字以内' %>
   </div>
 
   <%# options_for_selectをつかって、ジャンルの選択ができるようにしています%>
@@ -21,7 +21,7 @@
 
   <div class="form-group">
     <%= f.label :music_notes, "Introduction", class: "h5" %>
-    <%= f.text_area :music_notes, class: "form-control", rows: '6', wrap: :virtual %>
+    <%= f.text_area :music_notes, class: "form-control", rows: '6', wrap: :virtual, placeholder:'1文字以上150文字以内'%>
   </div>
 
   <div class="form-group">
